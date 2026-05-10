@@ -87,6 +87,29 @@ formula_scatter:
   - { text: "EL = PD × LGD",                                                         top: "54%", left: "50%", fs: 10, rot:  1.5 }
   - { text: "RW = K × 12.5 × MA",                                                    top: "60%", left: "78%", fs: 12, rot: -2.5 }
 
+# Project card — moonlit
+project_moonlit:
+  name: moonlit
+  tagline: A uv-native Python zipapp builder — the build tooling that ships the regulatory work.
+  repo_url: https://github.com/OpenAfterHours/moonlit
+  docs_url: https://openafterhours.github.io/moonlit/
+  bullets:
+    - { label: "uv-native",        body: "Dependency graphs read from uv.lock, no pip round-trip." }
+    - { label: "Single-file",      body: ".pyz per PEP 441 — one artifact, no virtualenv on target." }
+    - { label: "Workspace-aware",  body: "Bundles transitive deps for uv workspaces automatically." }
+    - { label: "Cross-version",    body: "--python-version flag for builds across interpreters." }
+
+# Scatter for the moonlit panel — short tokens instead of formulas.
+moonlit_scatter:
+  - { text: "PEP 441",                  top: "8%",  left: "5%",  fs: 13, rot: -2.0 }
+  - { text: "uv.lock",                  top: "16%", left: "60%", fs: 14, rot:  1.5 }
+  - { text: "--python-version 3.13",    top: "26%", left: "8%",  fs: 11, rot:  2.2 }
+  - { text: "app.pyz",                  top: "34%", left: "44%", fs: 16, rot: -1.0 }
+  - { text: "DEFLATE",                  top: "42%", left: "72%", fs: 11, rot:  2.5 }
+  - { text: "__main__.py",              top: "50%", left: "3%",  fs: 12, rot: -2.0 }
+  - { text: "zipapp",                   top: "56%", left: "52%", fs: 10, rot:  1.5 }
+  - { text: "0.2.0",                    top: "62%", left: "78%", fs: 12, rot: -2.5 }
+
 # Recent dispatches — newest first.
 posts:
   - { url: "dispatches/2026-08-04-what-i-got-wrong-whats-next/",                     date: "2026-08-04", kicker: "Part 8", title: "What I Got Wrong, What's Next",                            read: "11 min" }
@@ -100,7 +123,8 @@ posts:
 
 # Footer links
 links:
-  - { label: "github · personal",        url: "https://github.com/luckyphil122",                 external: true }
-  - { label: "github · openafterhours",  url: "https://github.com/OpenAfterHours/rwa_calculator", external: true }
-  - { label: "email",                    url: "mailto:hello@openafterhours.dev",                  external: false }
+  - { label: "github · personal",        url: "https://github.com/luckyphil122",                  external: true }
+  - { label: "github · openafterhours",  url: "https://github.com/OpenAfterHours",                 external: true }
+  - { label: "github · moonlit",         url: "https://github.com/OpenAfterHours/moonlit",         external: true }
+  - { label: "email",                    url: "mailto:hello@openafterhours.dev",                   external: false }
 ---
