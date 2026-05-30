@@ -110,6 +110,29 @@ moonlit_scatter:
   - { text: "zipapp",                   top: "56%", left: "52%", fs: 10, rot:  1.5 }
   - { text: "0.2.0",                    top: "62%", left: "78%", fs: 12, rot: -2.5 }
 
+# Project card — watchfire
+project_watchfire:
+  name: watchfire
+  tagline: Static analysis for UK financial regulatory citations in Python — executable audit trails that run in CI.
+  repo_url: https://github.com/OpenAfterHours/watchfire
+  docs_url: https://openafterhours.club/watchfire/
+  bullets:
+    - { label: "@cites",              body: "Annotate functions with the CRR, PRA Rulebook, PS or SS rule they implement." }
+    - { label: "watchfire check",     body: "Validates every citation against a versioned rulebook snapshot — non-zero exit in CI." }
+    - { label: "Traceability matrix", body: "Reverse lookup grouping citations by article, as an audit deliverable." }
+    - { label: "Zero overhead",       body: "@cites is a no-op — parsed citations attach to __watchfire__, no wrapping." }
+
+# Scatter for the watchfire panel — short tokens.
+watchfire_scatter:
+  - { text: "@cites",             top: "8%",  left: "5%",  fs: 14, rot: -2.0 }
+  - { text: "CRR Art. 153(1)(a)", top: "16%", left: "58%", fs: 12, rot:  1.5 }
+  - { text: "watchfire check",    top: "26%", left: "8%",  fs: 13, rot:  2.2 }
+  - { text: "PRA Rulebook",       top: "34%", left: "46%", fs: 15, rot: -1.0 }
+  - { text: "__watchfire__",      top: "42%", left: "72%", fs: 11, rot:  2.5 }
+  - { text: "PS1/26",             top: "50%", left: "3%",  fs: 12, rot: -2.0 }
+  - { text: "matrix",             top: "56%", left: "52%", fs: 10, rot:  1.5 }
+  - { text: "2024-07-09",         top: "62%", left: "78%", fs: 12, rot: -2.5 }
+
 # Recent dispatches — newest first.
 posts:
   - { url: "dispatches/2026-08-04-what-i-got-wrong-whats-next/",                     date: "2026-08-04", kicker: "Part 8", title: "What I Got Wrong, What's Next",                            read: "11 min" }
@@ -126,5 +149,6 @@ links:
   - { label: "github · personal",        url: "https://github.com/luckyphil122",                  external: true }
   - { label: "github · openafterhours",  url: "https://github.com/OpenAfterHours",                 external: true }
   - { label: "github · moonlit",         url: "https://github.com/OpenAfterHours/moonlit",         external: true }
+  - { label: "github · watchfire",       url: "https://github.com/OpenAfterHours/watchfire",       external: true }
   - { label: "email",                    url: "mailto:hello@openafterhours.dev",                   external: false }
 ---

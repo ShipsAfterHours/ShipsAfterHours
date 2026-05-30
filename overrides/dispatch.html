@@ -138,6 +138,42 @@
     </div>
   </section>
 
+  <section class="feature">
+    <div class="fl">
+      <div class="deck">Feature &middot; Project on file</div>
+      <h2>{{ page.meta.project_watchfire.name }}</h2>
+      <p class="sell">{{ page.meta.project_watchfire.tagline }}</p>
+      <ul>
+        {% for b in page.meta.project_watchfire.bullets %}
+        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
+        {% endfor %}
+      </ul>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a class="btn btn-primary" href="{{ page.meta.project_watchfire.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+        <a class="btn btn-ghost" href="{{ page.meta.project_watchfire.docs_url }}" target="_blank" rel="noopener">Read the docs</a>
+      </div>
+    </div>
+    <div class="fr">
+      <div class="formula-bg">
+        {% for f in page.meta.watchfire_scatter %}
+        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
+        {% endfor %}
+      </div>
+      <div class="panel">
+        <h4>// quickstart.py</h4>
+        <div class="term">
+          <div><span class="o">from</span> <span class="c">watchfire</span> <span class="o">import</span> <span class="c">cites</span></div>
+          <div>&nbsp;</div>
+          <div><span class="a">@cites</span>(<span class="a">"CRR Art. 153(1)(a)"</span>)</div>
+          <div><span class="o">def</span> <span class="c">corporate_rw</span>(<span class="c">pd, lgd, m</span>): ...</div>
+          <div>&nbsp;</div>
+          <div><span class="o">$</span> <span class="c">uv run watchfire check</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">checked 47 citations &middot; no issues found</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="latest">
     <h2>Recent dispatches <span class="small">// archive {% if page.meta.posts %}{% else %}&middot; coming soon{% endif %}</span></h2>
     {% if page.meta.posts %}
