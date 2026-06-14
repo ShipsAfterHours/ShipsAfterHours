@@ -5,7 +5,7 @@ description: A personal dispatch from the maintainer of OpenAfterHours — open-
 
 # Masthead strip
 issue: "№ 001 · Vol. I · 2026"
-masthead_lead: The After-Hours
+masthead_lead: OpenAfterHours
 masthead_tail: Co.
 dateline: Edinburgh · GMT · MIT licensed
 
@@ -19,9 +19,8 @@ headline_lead: "Capital adequacy is a"
 headline_emphasis: public good
 headline_tail: ". The software for it should be too."
 intro_long: >-
-  I build open-source regulatory tools for the financial industry —
-  quietly, after the day job. The premise is simple: banks that hold the
-  right capital and run the back-office cheaply can offer the public
+  I build open-source tools for the financial industry —
+  quietly, after the day job. The premise is simple: banks that run the back-office cheaply can offer the public
   better products. The maths is well-defined; the software shouldn't be a
   moat.
 intro_coda: >-
@@ -32,9 +31,9 @@ read_time: 4 min
 
 # // Now strip
 now:
-  - Working through PRA PS1/26 mapping for the SA module.
-  - "Reading: Bank of England SS9/17, on internal model governance."
-  - "Listening: shipping forecasts, mostly."
+  - Working through PRA PS1/26
+  - "Reading: On how best to utilise AI in development"
+  - "Listening: The Pragmatic Engineer"
 
 # Beliefs (4 columns, § 01 – § 04)
 beliefs:
