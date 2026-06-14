@@ -174,6 +174,75 @@
     </div>
   </section>
 
+  <section class="feature">
+    <div class="fl">
+      <div class="deck">Feature &middot; Project on file</div>
+      <h2>{{ page.meta.project_mooring.name }}</h2>
+      <p class="sell">{{ page.meta.project_mooring.tagline }}</p>
+      <ul>
+        {% for b in page.meta.project_mooring.bullets %}
+        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
+        {% endfor %}
+      </ul>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a class="btn btn-primary" href="{{ page.meta.project_mooring.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+        <a class="btn btn-ghost" href="{{ page.meta.project_mooring.docs_url }}" target="_blank" rel="noopener">Read the docs</a>
+      </div>
+    </div>
+    <div class="fr">
+      <div class="formula-bg">
+        {% for f in page.meta.mooring_scatter %}
+        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
+        {% endfor %}
+      </div>
+      <div class="panel">
+        <h4>// hub.sh</h4>
+        <div class="term">
+          <div><span class="o">$</span> <span class="c">uv run mooring hub</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">hub &middot; http://localhost:8421</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">logged in &middot; 12 notebooks</span></div>
+          <div>&nbsp;</div>
+          <div><span class="o">$</span> <span class="c">pull</span> <span class="a">risk_model.py</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">1 commit &middot; no conflicts</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="fl">
+      <div class="deck">Feature &middot; Project on file</div>
+      <h2>{{ page.meta.project_curfew.name }}</h2>
+      <p class="sell">{{ page.meta.project_curfew.tagline }}</p>
+      <ul>
+        {% for b in page.meta.project_curfew.bullets %}
+        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
+        {% endfor %}
+      </ul>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a class="btn btn-primary" href="{{ page.meta.project_curfew.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+        <a class="btn btn-ghost" href="{{ page.meta.project_curfew.docs_url }}" target="_blank" rel="noopener">Read the docs</a>
+      </div>
+    </div>
+    <div class="fr">
+      <div class="formula-bg">
+        {% for f in page.meta.curfew_scatter %}
+        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
+        {% endfor %}
+      </div>
+      <div class="panel">
+        <h4>// check.sh</h4>
+        <div class="term">
+          <div><span class="o">$</span> <span class="c">uv tool install curfew</span></div>
+          <div>&nbsp;</div>
+          <div><span class="o">$</span> <span class="c">curfew check</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">boundaries ok &middot; externals ok</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">38 modules &middot; no issues found</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="latest">
     <h2>Recent dispatches <span class="small">// archive {% if page.meta.posts %}{% else %}&middot; coming soon{% endif %}</span></h2>
     {% if page.meta.posts %}

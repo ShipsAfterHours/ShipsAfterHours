@@ -133,6 +133,52 @@ watchfire_scatter:
   - { text: "matrix",             top: "56%", left: "52%", fs: 10, rot:  1.5 }
   - { text: "2024-07-09",         top: "62%", left: "78%", fs: 12, rot: -2.5 }
 
+# Project card — mooring
+project_mooring:
+  name: mooring
+  tagline: Git-free marimo notebook sharing for analyst teams — all sync over the GitHub API, no git on the machine.
+  repo_url: https://github.com/OpenAfterHours/mooring
+  docs_url: https://openafterhours.club/mooring/
+  bullets:
+    - { label: "Git-free",        body: "Pull, edit, and push marimo notebooks with nothing but Python 3.12 installed." }
+    - { label: "GitHub API sync", body: "Per-file SHA writes — GitHub itself rejects anything that would clobber a teammate." }
+    - { label: "Conflict-safe",   body: "Pull never overwrites local edits; conflicts are resolved per file, never silently." }
+    - { label: "Frozen stack",    body: "polars, altair, plotly and more bundled into one .pyz — no pip at runtime." }
+
+# Scatter for the mooring panel — short tokens.
+mooring_scatter:
+  - { text: "marimo",        top: "8%",  left: "5%",  fs: 14, rot: -2.0 }
+  - { text: "mooring.pyz",   top: "16%", left: "58%", fs: 12, rot:  1.5 }
+  - { text: "GitHub API",    top: "26%", left: "8%",  fs: 13, rot:  2.2 }
+  - { text: "device code",   top: "34%", left: "46%", fs: 15, rot: -1.0 }
+  - { text: "notebooks/",    top: "42%", left: "72%", fs: 11, rot:  2.5 }
+  - { text: "blob SHA",      top: "50%", left: "3%",  fs: 12, rot: -2.0 }
+  - { text: "Python 3.12",   top: "56%", left: "52%", fs: 10, rot:  1.5 }
+  - { text: "no git",        top: "62%", left: "78%", fs: 12, rot: -2.5 }
+
+# Project card — curfew
+project_curfew:
+  name: curfew
+  tagline: Local-first Python dependency & module-boundary checker — offline architecture enforcement, no phone-home.
+  repo_url: https://github.com/OpenAfterHours/curfew
+  docs_url: https://openafterhours.club/curfew/
+  bullets:
+    - { label: "Module boundaries",       body: "Enforce which first-party modules may import which — dependency direction as code." }
+    - { label: "Dependency validation",   body: "Flags undeclared, unused, and uv workspace-leaked third-party imports." }
+    - { label: "Offline by construction", body: "No network, no telemetry; graphs render as Mermaid with no GraphViz binary." }
+    - { label: "Zero runtime deps",       body: "uv tool install curfew pulls in nothing — the engine runs on the stdlib alone." }
+
+# Scatter for the curfew panel — short tokens.
+curfew_scatter:
+  - { text: "curfew check",     top: "8%",  left: "5%",  fs: 14, rot: -2.0 }
+  - { text: "[tool.curfew]",    top: "16%", left: "56%", fs: 12, rot:  1.5 }
+  - { text: "--boundaries",     top: "26%", left: "8%",  fs: 13, rot:  2.2 }
+  - { text: "import graph",     top: "34%", left: "46%", fs: 15, rot: -1.0 }
+  - { text: "Mermaid",          top: "42%", left: "72%", fs: 11, rot:  2.5 }
+  - { text: "workspace leak",   top: "50%", left: "3%",  fs: 12, rot: -2.0 }
+  - { text: "stdlib-only",      top: "56%", left: "52%", fs: 10, rot:  1.5 }
+  - { text: "uv tool install",  top: "62%", left: "78%", fs: 12, rot: -2.5 }
+
 # Recent dispatches — newest first.
 posts:
   - { url: "dispatches/2026-08-04-what-i-got-wrong-whats-next/",                     date: "2026-08-04", kicker: "Part 8", title: "What I Got Wrong, What's Next",                            read: "11 min" }
@@ -150,5 +196,7 @@ links:
   - { label: "github · openafterhours",  url: "https://github.com/OpenAfterHours",                 external: true }
   - { label: "github · moonlit",         url: "https://github.com/OpenAfterHours/moonlit",         external: true }
   - { label: "github · watchfire",       url: "https://github.com/OpenAfterHours/watchfire",       external: true }
+  - { label: "github · mooring",         url: "https://github.com/OpenAfterHours/mooring",         external: true }
+  - { label: "github · curfew",          url: "https://github.com/OpenAfterHours/curfew",          external: true }
   - { label: "email",                    url: "mailto:hello@openafterhours.dev",                   external: false }
 ---
