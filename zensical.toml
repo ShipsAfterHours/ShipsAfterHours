@@ -6,7 +6,7 @@
 site_name = "OpenAfterHours · After-hours dispatch"
 site_description = "A personal dispatch from the maintainer of OpenAfterHours — open-source regulatory tools for the financial industry, built after hours."
 site_author = "The Maintainer - Phil"
-site_url = "https://luckyphil122.github.io/luckyphil122/"
+site_url = "https://shipsafterhours.github.io/ShipsAfterHours/"
 
 copyright = """
 &copy; 2026 · <b>OpenAfterHours</b>
