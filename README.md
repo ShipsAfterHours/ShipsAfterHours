@@ -1,8 +1,8 @@
 # Hi, I'm Phil 👋
 
-I build open-source regulatory tools for the financial industry — quietly, after the day job, under the [**OpenAfterHours**](https://github.com/OpenAfterHours) banner.
+I build open-source  tools for the financial industry — quietly, after the day job, under the [**OpenAfterHours**](https://github.com/OpenAfterHours) banner.
 
-The premise is simple: **capital adequacy is a public good, and the software for it should be too.** Banks that hold the right capital and run a cheap back-office can offer the public better products. The maths is well-defined; the software shouldn't be a moat.
+The premise is simple: running a cheap back-office can offer the public better products. The maths is well-defined; the software shouldn't be a moat.
 
 📡 **[Read the After-Hours Dispatch →](https://shipsafterhours.github.io/ShipsAfterHours/)** — a running letter on building these tools: the regulation, the engineering, and what it's like driving the work through a swarm of [Claude Code](https://www.anthropic.com/claude-code) agents.
 
