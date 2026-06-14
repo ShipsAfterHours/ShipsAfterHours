@@ -1,6 +1,6 @@
 # Hi, I'm Phil 👋
 
-I build open-source  tools for the financial industry — quietly, after the day job, under the [**OpenAfterHours**](https://github.com/OpenAfterHours) banner.
+I build open-source tools — quietly, after the day job, under the [**OpenAfterHours**](https://github.com/OpenAfterHours) banner.
 
 The premise is simple: running a cheap back-office can offer the public better products. The maths is well-defined; the software shouldn't be a moat.
 
