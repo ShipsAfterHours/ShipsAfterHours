@@ -33,7 +33,7 @@ uv run zensical build    # static build into ./site
 
 ## Elsewhere
 
-📫 [hello@openafterhours.dev](mailto:hello@openafterhours.dev) · personal GitHub [@luckyphil122](https://github.com/luckyphil122) · org [@OpenAfterHours](https://github.com/OpenAfterHours)
+📫 org [@OpenAfterHours](https://github.com/OpenAfterHours)
 
 ---
 
