@@ -13,23 +13,66 @@
 {% for path in config.extra_css %}
 <link rel="stylesheet" href="{{ path | url }}" />
 {% endfor %}
+<!-- Everything the landing terminal does is gated behind this class, so a
+     visitor without JavaScript gets the dispatch page and nothing else. -->
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
+{% if page.meta.terminal %}
+{% set T = page.meta.terminal %}
+<div class="term-stage" id="term">
+  <div class="term-owl"><img src="{{ 'images/openafterhours_icon_512.png' | url }}" alt="" /></div>
+
+  <div class="bar">
+    <span class="lights"><i></i><i></i><i></i></span>
+    <span>{{ T.bar }}</span>
+    <span class="spacer"></span>
+    <span class="live">&bull; after hours</span>
+    <button class="bail" id="term-bail" type="button">{{ T.bail }}</button>
+  </div>
+
+  <div id="term-scroll">
+    <div id="term-wrap">
+      <div id="term-out" aria-live="polite"></div>
+      <div id="term-promptline">
+        <span class="ps1">{{ T.ps1 }}</span>
+        <span class="field">
+          <span id="term-mirror"></span><span id="term-caret"></span><span id="term-ghost"></span>
+          <input id="term-cmd" type="text" autocomplete="off" autocorrect="off"
+                 autocapitalize="off" spellcheck="false" aria-label="Terminal command input" />
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div id="term-chips">
+    <span class="hint">try:</span>
+    {% for c in T.chips %}
+    <button type="button" data-cmd="{{ c }}">{{ c }}</button>
+    {% endfor %}
+    <button type="button" data-cmd="read" class="go">read &rarr;</button>
+  </div>
+</div>
+
+<div class="term-stage" id="term-swallow"><div class="sweep"></div></div>
+<button id="toterm" type="button" hidden>&larr; back to the prompt</button>
+{% endif %}
+
 <article class="lp lp-dispatch">
-  <header class="top">
+  <header class="top reveal" data-step="1">
     <div class="l">{{ page.meta.issue }}</div>
     <div class="masthead">{{ page.meta.masthead_lead }} <span class="amp">&amp;</span> {{ page.meta.masthead_tail }}</div>
     <div class="r">{{ page.meta.dateline }}</div>
   </header>
 
-  <div class="meta-row">
+  <div class="meta-row reveal" data-step="1">
     <span>{{ page.meta.tagline }}</span>
     <span><span class="dot-sep">&bull;</span> {{ page.meta.cadence }}</span>
   </div>
 
   <section class="lead-section">
-    <div class="lead-side">
+    <div class="lead-side reveal" data-step="2">
       <div class="owl-mark"><img src="{{ 'images/openafterhours_icon_512.png' | url }}" alt="OpenAfterHours owl"/></div>
       <div style="height: 24px"></div>
       <div class="now-card">
@@ -43,11 +86,13 @@
     </div>
 
     <div class="lead-main">
-      <div class="deck">{{ page.meta.deck }}</div>
-      <h1>{{ page.meta.headline_lead }} <em>{{ page.meta.headline_emphasis }}</em>{{ page.meta.headline_tail }}</h1>
-      <p class="lede">{{ page.meta.intro_long }}</p>
-      <p class="lede" style="margin-top: 14px">{{ page.meta.intro_coda }}</p>
-      <div class="byline">
+      <!-- The terminal retypes these four in place on hand-off. They are
+           rendered in full so the page still reads with JavaScript off. -->
+      <div class="deck" id="lede-deck">{{ page.meta.deck }}</div>
+      <h1 id="lede-head">{{ page.meta.headline_lead }} <em>{{ page.meta.headline_emphasis }}</em>{{ page.meta.headline_tail }}</h1>
+      <p class="lede" id="lede-body">{{ page.meta.intro_long }}</p>
+      <p class="lede" id="lede-coda" style="margin-top: 14px">{{ page.meta.intro_coda }}</p>
+      <div class="byline reveal" data-step="2">
         <span><strong>BY</strong> &middot; <img class="avatar" src="{{ 'images/maintainer_avatar.png' | url }}" alt="{{ page.meta.byline }}" /> {{ page.meta.byline }}</span>
         <span><strong>FILED</strong> &middot; <span id="filed-date"></span></span>
         <span><strong>READ</strong> &middot; {{ page.meta.read_time }}</span>
@@ -55,7 +100,7 @@
     </div>
   </section>
 
-  <section class="columns">
+  <section class="columns reveal" data-step="3">
     {% for b in page.meta.beliefs %}
     <div class="col">
       <div class="num">&sect; {{ b.n }}</div>
@@ -65,7 +110,7 @@
     {% endfor %}
   </section>
 
-  <section class="feature">
+  <section class="feature reveal" data-step="4">
     <div class="fl">
       <div class="deck">Feature &middot; Project on file</div>
       <h2>{{ page.meta.project.name }}</h2>
@@ -102,7 +147,7 @@
     </div>
   </section>
 
-  <section class="feature">
+  <section class="feature reveal" data-step="4">
     <div class="fl">
       <div class="deck">Feature &middot; Project on file</div>
       <h2>{{ page.meta.project_moonlit.name }}</h2>
@@ -138,7 +183,7 @@
     </div>
   </section>
 
-  <section class="feature">
+  <section class="feature reveal" data-step="4">
     <div class="fl">
       <div class="deck">Feature &middot; Project on file</div>
       <h2>{{ page.meta.project_watchfire.name }}</h2>
@@ -174,7 +219,7 @@
     </div>
   </section>
 
-  <section class="feature">
+  <section class="feature reveal" data-step="4">
     <div class="fl">
       <div class="deck">Feature &middot; Project on file</div>
       <h2>{{ page.meta.project_mooring.name }}</h2>
@@ -209,7 +254,7 @@
     </div>
   </section>
 
-  <section class="feature">
+  <section class="feature reveal" data-step="4">
     <div class="fl">
       <div class="deck">Feature &middot; Project on file</div>
       <h2>{{ page.meta.project_curfew.name }}</h2>
@@ -243,7 +288,7 @@
     </div>
   </section>
 
-  <section class="latest">
+  <section class="latest reveal" data-step="5">
     <h2>Recent dispatches <span class="small">// archive {% if page.meta.posts %}{% else %}&middot; coming soon{% endif %}</span></h2>
     {% if page.meta.posts %}
       {% for p in page.meta.posts %}
@@ -261,7 +306,7 @@
     {% endif %}
   </section>
 
-  <footer class="strap">
+  <footer class="strap reveal" data-step="5">
     <div>{{ config.copyright | safe }} &middot; Set in Space Grotesk &middot; Inter &middot; JetBrains Mono</div>
     <div>
       {% for l in page.meta.links %}
@@ -275,5 +320,324 @@
   document.getElementById('filed-date').textContent =
     new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 </script>
+
+{% if page.meta.terminal %}
+<script id="term-data" type="application/json">{{ page.meta.terminal | tojson }}</script>
+<script>
+/* ===========================================================================
+   The landing terminal — a working shell over the dispatch page.
+   Content comes from the `terminal:` block in docs/index.md; this file only
+   knows how to run it. Styling lives in docs/stylesheets/terminal.css.
+   =========================================================================== */
+(() => {
+  'use strict';
+
+  const T = JSON.parse(document.getElementById('term-data').textContent);
+  const $ = s => document.querySelector(s);
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc = s => String(s).replace(/[&<>"]/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  const term    = $('#term');
+  const out     = $('#term-out');
+  const scroll  = $('#term-scroll');
+  const input   = $('#term-cmd');
+  const mirror  = $('#term-mirror');
+  const ghost   = $('#term-ghost');
+  const caret   = $('#term-caret');
+  const promptl = $('#term-promptline');
+  const article = $('.lp-dispatch');
+
+  let booting = true, handedOver = false;
+  let history = [], hIdx = 0, draft = '';
+
+  document.body.classList.add('term-open');
+
+  /* ── output ─────────────────────────────────────────────────────── */
+  function emit(html = '', cls = '') {
+    const el = document.createElement('span');
+    el.className = 'oln' + (cls ? ' ' + cls : '') + (REDUCED ? '' : ' anim');
+    el.innerHTML = html;
+    out.appendChild(el);
+    return el;
+  }
+  const pad  = () => emit('', 'pad');
+  const show = lines => (lines || []).forEach(l => (l === '' ? pad() : emit(l)));
+  const toBottom = () => { scroll.scrollTop = scroll.scrollHeight; };
+  const echo = t =>
+    emit(`<span class="ps1">${esc(T.ps1)}</span> <span class="cmdtext">${esc(t)}</span>`, 'echo');
+
+  /* ── commands: the front-matter table, plus the built-ins ───────── */
+  const CONTENT = {};
+  (T.commands || []).forEach(c => { CONTENT[c.name] = c; });
+
+  const BUILTIN = {
+    help: () => {
+      const rows = (T.commands || []).map(c =>
+        `<span class="row"><span class="rk">${esc(c.name)}</span>` +
+        `<span class="rv">${esc(c.blurb || '')}</span></span>`);
+      show(['', ...rows,
+        '<span class="row"><span class="rk">read</span>' +
+        '<span class="rv">leave the prompt, read the whole page</span></span>',
+        '',
+        '<span class="d">also: ls · open &lt;name&gt; · clear · date · ' +
+        'Tab completes · &uarr;&darr; for history</span>']);
+    },
+    read: () => { handOver(); },
+    exit: () => { handOver(); },
+    clear: () => { out.innerHTML = ''; },
+    date: () => show(['', `<span class="d">${esc(new Date().toString())}</span>`]),
+    sudo: () => show(['', '<span class="r">nice try.</span>']),
+    ls: () => show(['', Object.keys(CONTENT).concat(['read'])
+      .map(n => `<span class="k">${esc(n)}</span>`).join('   ')]),
+    open: arg => {
+      const urls = T.urls || {};
+      const key = String(arg || '').toLowerCase().replace(/[^a-z]/g, '');
+      const alias = { rwacalculator: 'rwa', rwacalc: 'rwa', calculator: 'rwa', bank: 'rwa',
+                      thecoachesapp: 'coaches', trainingden: 'swim', den: 'swim' };
+      const target = urls[key] || urls[alias[key]];
+      if (!target) {
+        show(['', `<span class="r">open:</span> nothing called ` +
+          `<span class="w">${esc(arg || '')}</span>. try: ` +
+          Object.keys(urls).map(k => `<span class="k">${esc(k)}</span>`).join(', ')]);
+        return;
+      }
+      window.open(target, '_blank', 'noopener');
+      show(['', `<span class="g">&rarr;</span> opening <a href="${esc(target)}" ` +
+        `target="_blank" rel="noopener">${esc(target)}</a> <span class="d">in a new tab</span>`]);
+    }
+  };
+
+  const ALL = Object.keys(CONTENT).concat(Object.keys(BUILTIN))
+    .filter((v, i, a) => a.indexOf(v) === i);
+
+  function run(raw) {
+    const text = String(raw).trim();
+    echo(text);
+    if (!text) { toBottom(); return; }
+    history.push(text); hIdx = history.length;
+
+    const [name, ...rest] = text.split(/\s+/);
+    const key = name.toLowerCase();
+
+    if (CONTENT[key])      show(CONTENT[key].lines);
+    else if (BUILTIN[key]) BUILTIN[key](rest.join(' '));
+    else {
+      const guess = ALL.find(n => n.startsWith(key[0] || '~'));
+      show(['', `<span class="r">command not found:</span> <span class="w">${esc(name)}</span>` +
+        (guess ? ` <span class="d">— did you mean</span> <span class="k">${esc(guess)}</span><span class="d">?</span>` : ''),
+        '<span class="d">run</span> <span class="k">help</span> <span class="d">for the list, or click a chip below.</span>']);
+    }
+    toBottom();
+  }
+
+  /* ── the live line ──────────────────────────────────────────────── */
+  function paint() {
+    const v = input.value;
+    const sel = input.selectionStart ?? v.length;
+    const rest = v.slice(sel);
+    mirror.textContent = v.slice(0, sel);
+
+    let hint = '';
+    if (!rest && v && !v.includes(' ')) {
+      const m = ALL.find(n => n.startsWith(v.toLowerCase()) && n !== v.toLowerCase());
+      if (m) hint = m.slice(v.length);
+    }
+    // ghost.textContent is exactly the hint when the caret is at the end,
+    // which is what ArrowRight accepts
+    ghost.innerHTML = `<span class="w">${esc(rest)}</span><span class="d">${esc(hint)}</span>`;
+  }
+  const setLine = v => { input.value = v; input.setSelectionRange(v.length, v.length); paint(); };
+
+  ['input', 'keyup', 'click'].forEach(e => input.addEventListener(e, paint));
+  input.addEventListener('focus', () => caret.classList.remove('off'));
+  input.addEventListener('blur',  () => caret.classList.add('off'));
+
+  input.addEventListener('keydown', e => {
+    if (booting) finishBoot();
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const v = input.value; setLine(''); run(v); return;
+    }
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const v = input.value.toLowerCase();
+      if (!v) { run('help'); setLine(''); return; }
+      const hits = ALL.filter(n => n.startsWith(v));
+      if (hits.length === 1) setLine(hits[0] + ' ');
+      else if (hits.length > 1) {
+        let p = hits[0];
+        while (p && !hits.every(h => h.startsWith(p))) p = p.slice(0, -1);
+        if (p.length > v.length) setLine(p);
+        else {
+          echo(v);
+          show(['', hits.map(h => `<span class="k">${esc(h)}</span>`).join('   ')]);
+          setLine(v); toBottom();
+        }
+      }
+      return;
+    }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      if (!history.length) return;
+      e.preventDefault();
+      if (hIdx === history.length) draft = input.value;
+      hIdx = Math.max(0, Math.min(history.length, hIdx + (e.key === 'ArrowUp' ? -1 : 1)));
+      setLine(hIdx === history.length ? draft : history[hIdx]);
+      return;
+    }
+    if (e.key === 'ArrowRight' && input.selectionStart === input.value.length && ghost.textContent) {
+      e.preventDefault(); setLine(input.value + ghost.textContent); return;
+    }
+    if (e.key === 'l' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); out.innerHTML = ''; }
+    if (e.key === 'c' && e.ctrlKey) { e.preventDefault(); echo(input.value + ' ^C'); setLine(''); toBottom(); }
+  });
+
+  /* clicking the terminal returns focus to the line — unless the click was
+     a text selection or a real link */
+  term.addEventListener('mousedown', e => {
+    if (e.target.closest('a, button')) return;
+    if (String(window.getSelection())) return;
+    setTimeout(() => input.focus({ preventScroll: true }), 0);
+  });
+
+  $('#term-chips').addEventListener('click', e => {
+    const b = e.target.closest('button[data-cmd]');
+    if (!b) return;
+    if (booting) finishBoot();
+    input.focus({ preventScroll: true });
+    setLine(''); run(b.dataset.cmd);
+  });
+
+  /* ── boot ───────────────────────────────────────────────────────── */
+  const BOOT = (T.boot || []).map(b => (typeof b === 'string' ? { t: b } : b));
+  const bootHtml = b =>
+    b.cls ? `<span class="${b.cls}">${b.t}</span>` : b.t;
+
+  function finishBoot() {
+    if (!booting) return;
+    booting = false;
+    out.innerHTML = '';
+    BOOT.forEach(b => (b.t ? emit(bootHtml(b)) : pad()));
+    promptl.classList.remove('busy');
+    toBottom();
+    input.focus({ preventScroll: true });
+  }
+
+  async function boot() {
+    promptl.classList.add('busy');
+    if (REDUCED) { finishBoot(); return; }
+
+    for (const b of BOOT) {
+      if (!booting) return;
+      if (!b.t) { pad(); await sleep(90); continue; }
+      const el = emit('');
+      const tmp = document.createElement('span');
+      tmp.innerHTML = bootHtml(b);
+      const full = tmp.textContent;
+      const speed = b.speed || 14;
+      for (let i = 1; i <= full.length; i++) {
+        if (!booting) return;
+        el.textContent = full.slice(0, i);
+        await sleep(speed + Math.random() * speed * 0.6);
+      }
+      el.innerHTML = bootHtml(b);   // swap in the coloured version once typed
+      toBottom();
+      await sleep(120);
+    }
+    if (!booting) return;
+    booting = false;
+    promptl.classList.remove('busy');
+    input.focus({ preventScroll: true });
+    toBottom();
+  }
+
+  /* ── hand-off to the page ───────────────────────────────────────── */
+  const step = n => document.querySelectorAll(`.reveal[data-step="${n}"]`)
+    .forEach(el => el.classList.add('in'));
+  const showAll = () => [1, 2, 3, 4, 5].forEach(step);
+
+  /* snapshot an element's children so we can retype it exactly as authored,
+     keeping the <em> in the headline — no copy is duplicated in JS */
+  function snapshot(el) {
+    return [...el.childNodes].map(n => ({
+      tag: n.nodeType === 1 ? n.tagName.toLowerCase() : null,
+      cls: n.nodeType === 1 ? n.className : '',
+      t: n.textContent
+    }));
+  }
+  async function retype(el, tokens, speed) {
+    el.textContent = '';
+    const c = document.createElement('span');
+    c.className = 'tcaret';
+    el.appendChild(c);
+    for (const tok of tokens) {
+      const node = document.createElement(tok.tag || 'span');
+      if (tok.cls) node.className = tok.cls;
+      el.insertBefore(node, c);
+      if (REDUCED) { node.textContent = tok.t; continue; }
+      for (const ch of tok.t) {
+        node.textContent += ch;
+        const j = ch === ' ' ? speed * 0.4 : speed + Math.random() * speed * 0.7;
+        await sleep('.,—:?!'.includes(ch) ? j * 6 : j);
+      }
+    }
+    c.remove();
+  }
+
+  const LEDE = ['#lede-deck', '#lede-head', '#lede-body', '#lede-coda']
+    .map(s => $(s)).filter(Boolean);
+  const LEDE_SPEED = [16, 30, 8, 12];
+  const stashed = LEDE.map(snapshot);
+
+  async function handOver() {
+    if (handedOver) return;
+    handedOver = true;
+
+    const swallow = $('#term-swallow');
+    term.classList.add('dissolve');
+    swallow.classList.add('on');
+    await sleep(REDUCED ? 0 : 760);
+
+    term.hidden = true;
+    document.body.classList.remove('term-open');
+    window.scrollTo(0, 0);
+    $('#toterm').hidden = false;
+    swallow.classList.remove('on');
+    await sleep(REDUCED ? 0 : 300);
+
+    if (REDUCED) { showAll(); return; }
+
+    article.classList.add('develop');
+    step(1);
+    await sleep(600);
+    for (let i = 0; i < LEDE.length; i++) await retype(LEDE[i], stashed[i], LEDE_SPEED[i]);
+    step(2); await sleep(180);
+    step(3); await sleep(140);
+    step(4); await sleep(140);
+    step(5);
+  }
+
+  $('#term-bail').addEventListener('click', handOver);
+  $('#toterm').addEventListener('click', () => {
+    $('#toterm').hidden = true;
+    term.hidden = false;
+    term.classList.remove('dissolve');
+    document.body.classList.add('term-open');
+    input.focus({ preventScroll: true });
+    toBottom();
+  });
+
+  /* someone arriving at a deep link should not be held at the prompt */
+  if (location.hash) { handOver(); }
+  else {
+    paint();
+    input.focus({ preventScroll: true });   // typing must land from frame one
+    setTimeout(boot, 260);
+  }
+})();
+</script>
+{% endif %}
 </body>
 </html>

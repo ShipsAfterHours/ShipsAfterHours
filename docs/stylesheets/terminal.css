@@ -1,0 +1,237 @@
+/* =============================================================
+   OpenAfterHours — the landing terminal
+   -------------------------------------------------------------
+   A working shell that sits over the dispatch page on first
+   visit. Everything here is gated behind `html.js`, set by an
+   inline script in the template head: with JavaScript off the
+   overlay never paints and the dispatch page is simply the page.
+
+   Content comes from the `terminal:` block in docs/index.md.
+   Tokens are the ones in colors_and_type.css.
+   ============================================================= */
+
+/* ---- overlay plumbing (JS only) ---------------------------- */
+.term-stage { display: none; }
+.js .term-stage { display: block; position: fixed; inset: 0; z-index: 100; }
+.js .term-stage[hidden] { display: none !important; }
+.js body.term-open { overflow: hidden; }
+
+/* ---- the terminal ------------------------------------------ */
+.js #term {
+  display: flex;
+  flex-direction: column;
+  background: var(--oah-slate-900);
+  color: var(--oah-slate-200);
+  transition: opacity 700ms var(--ease-out), filter 700ms var(--ease-out);
+}
+#term.dissolve { opacity: 0; filter: blur(6px); pointer-events: none; }
+
+#term::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(65% 50% at 50% 120%, rgba(255, 145, 0, .16), transparent 70%);
+}
+#term::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: .3;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, .022) 0 1px, transparent 1px 3px);
+}
+.term-owl {
+  position: absolute; width: 460px; height: 460px; right: 4%; top: 46%;
+  transform: translateY(-50%); opacity: .045;
+  filter: grayscale(1) contrast(1.2);
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.term-owl img { width: 100%; height: 100%; }
+
+/* ---- title bar --------------------------------------------- */
+#term .bar {
+  position: relative; z-index: 2; flex: none;
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 18px;
+  border-bottom: 1px solid rgba(216, 222, 233, .10);
+  background: rgba(255, 255, 255, .02);
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--oah-slate-500);
+}
+#term .bar .lights { display: flex; gap: 6px; margin-right: 4px; }
+#term .bar .lights i { width: 9px; height: 9px; border-radius: 50%; background: rgba(216, 222, 233, .16); }
+#term .bar .spacer { flex: 1; }
+#term .bar .live { color: var(--oah-terminal-green); }
+/* the escape hatch — visible from the first frame */
+#term .bar .bail {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: none; color: var(--oah-slate-300);
+  background: transparent; border: 1px solid rgba(216, 222, 233, .18);
+  border-radius: var(--radius-pill); padding: 5px 13px; cursor: pointer;
+  transition: color 150ms, border-color 150ms, background 150ms;
+}
+#term .bar .bail:hover {
+  color: var(--oah-orange);
+  border-color: rgba(255, 145, 0, .5);
+  background: var(--oah-orange-06);
+}
+
+/* ---- scrollback -------------------------------------------- */
+#term-scroll {
+  position: relative; z-index: 2; flex: 1;
+  overflow-y: auto; overscroll-behavior: contain;
+  padding: 26px clamp(18px, 5vw, 56px) 8px;
+}
+#term-wrap { max-width: 860px; margin: 0 auto; }
+
+#term-out, #term-promptline {
+  font-family: var(--font-mono);
+  font-size: 14px; line-height: 1.85;
+}
+@media (max-width: 640px) {
+  #term-out, #term-promptline { font-size: 12.5px; line-height: 1.8; }
+  .term-owl { width: 300px; height: 300px; }
+}
+
+/* output indents two columns; the echoed prompt sits at column 0 */
+.oln { display: block; white-space: pre-wrap; word-break: break-word; }
+.oln:not(.echo) { padding-left: 2ch; }
+.oln.pad { height: .85em; }
+.oln.anim { animation: term-ln-in 260ms var(--ease-out) both; }
+@keyframes term-ln-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: none; }
+}
+
+#term .k { color: var(--oah-orange); }
+#term .w { color: #fff; }
+#term .d { color: var(--oah-slate-500); }
+#term .g { color: var(--oah-terminal-green); }
+#term .b { color: #7aa7ff; }
+#term .r { color: #ff8a7d; }
+#term .oln a {
+  color: var(--oah-orange-soft); text-decoration: none;
+  border-bottom: 1px dotted rgba(255, 183, 77, .45);
+}
+#term .oln a:hover { color: var(--oah-orange); border-bottom-style: solid; }
+
+.echo .ps1 { color: var(--oah-terminal-green); }
+.echo .cmdtext { color: #fff; }
+
+/* two-column rows inside command output */
+.oln .row { display: grid; grid-template-columns: 168px 1fr; gap: 0 18px; }
+.oln .row > .rk { color: var(--oah-orange); }
+.oln .row > .rv { color: var(--oah-slate-300); }
+@media (max-width: 640px) {
+  .oln .row { grid-template-columns: 1fr; gap: 0; }
+  .oln .row > .rv { padding-bottom: .5em; }
+}
+
+/* ---- the live prompt --------------------------------------- */
+#term-promptline {
+  position: relative; display: flex; align-items: baseline; gap: 9px;
+  padding-bottom: 30px;
+}
+#term-promptline .ps1 { color: var(--oah-terminal-green); flex: none; }
+#term-promptline .field { position: relative; flex: 1; min-width: 0; }
+#term-promptline.busy { opacity: .45; }
+
+#term-mirror { color: #fff; white-space: pre-wrap; word-break: break-word; }
+#term-caret {
+  display: inline-block; width: 8px; height: 1.05em;
+  background: var(--oah-terminal-green); vertical-align: -.18em;
+  animation: term-blink 1.05s steps(2) infinite;
+}
+#term-caret.off { animation: none; opacity: .35; }
+@keyframes term-blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+
+/* the real input — invisible, but genuinely focused, so we inherit
+   mobile keyboards, IME, paste and selection for free */
+#term-cmd {
+  position: absolute; inset: 0; width: 100%;
+  background: transparent; border: 0; outline: none;
+  padding: 0; margin: 0;
+  font: inherit; color: transparent; caret-color: transparent;
+}
+
+/* ---- chips — nobody should have to guess a command --------- */
+#term-chips {
+  position: relative; z-index: 2; flex: none;
+  border-top: 1px solid rgba(216, 222, 233, .10);
+  background: rgba(13, 14, 17, .72);
+  backdrop-filter: blur(6px);
+  padding: 12px clamp(18px, 5vw, 56px);
+  display: flex; align-items: center; gap: 9px;
+  overflow-x: auto; scrollbar-width: thin;
+}
+#term-chips .hint {
+  flex: none; margin-right: 4px;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: .08em; color: var(--oah-slate-500);
+}
+#term-chips button {
+  flex: none;
+  font-family: var(--font-mono); font-size: 12.5px;
+  background: rgba(255, 255, 255, .03); color: var(--oah-slate-200);
+  border: 1px solid rgba(216, 222, 233, .16);
+  border-radius: var(--radius-pill); padding: 7px 15px; cursor: pointer;
+  transition: color 150ms, border-color 150ms, background 150ms, transform 150ms;
+}
+#term-chips button:hover {
+  color: var(--oah-orange);
+  border-color: rgba(255, 145, 0, .5);
+  background: rgba(255, 145, 0, .07);
+  transform: translateY(-1px);
+}
+#term-chips button.go { color: var(--oah-orange); border-color: rgba(255, 145, 0, .45); }
+
+/* ---- the hand-off ------------------------------------------ */
+#term-swallow {
+  z-index: 200; pointer-events: none; opacity: 0; background: #000;
+  transition: opacity 260ms linear;
+}
+#term-swallow.on { opacity: 1; }
+#term-swallow .sweep {
+  position: absolute; left: 0; right: 0; top: 50%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oah-orange), transparent);
+  box-shadow: 0 0 24px 2px rgba(255, 145, 0, .6);
+  transform: scaleX(0); transform-origin: 50% 50%;
+}
+#term-swallow.on .sweep { animation: term-sweep 700ms var(--ease-out) forwards; }
+@keyframes term-sweep {
+  0%   { transform: scaleX(0); opacity: 0 }
+  40%  { transform: scaleX(1); opacity: 1 }
+  100% { transform: scaleX(1); opacity: 0 }
+}
+
+/* the page developing out of black, like paper */
+.lp-dispatch.develop { animation: term-develop 1100ms var(--ease-out) both; }
+@keyframes term-develop {
+  from { filter: brightness(.15) contrast(1.6) saturate(.2); }
+  to   { filter: none; }
+}
+
+/* staged reveal — only ever hidden when JS is there to unhide it */
+.js .reveal {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+.js .reveal.in { opacity: 1; transform: none; }
+
+.tcaret {
+  display: inline-block; width: 3px; height: 1.05em;
+  background: var(--oah-orange); vertical-align: -.18em; margin-left: 3px;
+  animation: term-blink 1s steps(2) infinite;
+}
+
+#toterm {
+  position: fixed; right: 14px; top: 14px; z-index: 300;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em;
+  background: var(--oah-slate-900); color: var(--oah-slate-200);
+  border: 1px solid rgba(255, 145, 0, .45);
+  border-radius: var(--radius-pill); padding: 8px 14px; cursor: pointer;
+}
+#toterm:hover { color: var(--oah-orange); }
+#toterm[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .oln.anim { animation: none; }
+  .lp-dispatch.develop { animation: none; }
+  #term-caret, .tcaret { animation: none; }
+  .js .reveal { transition: none; }
+}

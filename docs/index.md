@@ -3,6 +3,185 @@ template: dispatch.html
 title: OpenAfterHours · After-hours dispatch
 description: A personal dispatch from the maintainer of OpenAfterHours — open-source regulatory tools for the financial industry, built after hours.
 
+# ─────────────────────────────────────────────────────────────
+# The landing terminal (overrides/dispatch.html renders this over
+# the page; docs/stylesheets/terminal.css styles it).
+#
+# A working shell — Tab completes, ↑↓ recall history, → accepts the
+# dim suggestion. With JavaScript off it never appears and this page
+# is simply the page.
+#
+# `lines` accept a small set of inline spans:
+#   k = orange   w = white   d = dim   g = green   b = blue   r = red
+# An empty string is a blank line.
+# ─────────────────────────────────────────────────────────────
+terminal:
+  ps1: "openafterhours ~ $"
+  bar: "openafterhours.club — sh"
+  bail: "skip the terminal · read the page →"
+  chips: [help, projects, bank, swim, writing, hire, cv]
+
+  boot:
+    - { t: "openafterhours.club · sh · after hours", cls: d, speed: 10 }
+    - ""
+    - { t: "Hi. I'm Phil.", cls: w, speed: 55 }
+    - ""
+    - { t: "I build software after the day job — regulatory capital engines for", speed: 12 }
+    - { t: "banks, developer tooling for Python, and a session planner that", speed: 12 }
+    - { t: "swimming coaches use at the poolside.", speed: 12 }
+    - ""
+    - { t: "This prompt works. Type <span class=\"k\">help</span>, or click something below.", cls: d, speed: 10 }
+
+  # `open <name>` targets
+  urls:
+    rwa: https://github.com/OpenAfterHours/rwa_calculator
+    swim: https://trainingden.app
+    coaches: https://github.com/gooseup/thecoachesapp
+    watchfire: https://github.com/OpenAfterHours/watchfire
+    moonlit: https://github.com/OpenAfterHours/moonlit
+    mooring: https://github.com/OpenAfterHours/mooring
+    curfew: https://github.com/OpenAfterHours/curfew
+    github: https://github.com/OpenAfterHours
+    gooseup: https://github.com/gooseup
+
+  commands:
+    - name: whoami
+      blurb: the short version
+      lines:
+        - ""
+        - '<span class="w">Phil Harrison</span> <span class="d">— Edinburgh, GMT</span>'
+        - ""
+        - "I build software after the day job. Regulatory capital engines for"
+        - "banks, developer tooling for Python, and a session planner that"
+        - "swimming coaches use at the poolside."
+        - ""
+        - "The domains have nothing to do with each other. The practice is"
+        - "identical: small batches, honest tests, numbers the machine"
+        - '<span class="k">computes</span> rather than <span class="k">asserts</span>, and code that explains itself'
+        - "to whoever reads it next."
+
+    - name: projects
+      blurb: everything, in one table
+      lines:
+        - ""
+        - '<span class="d">NAME              WHERE         WHAT</span>'
+        - '<span class="k">rwa_calculator</span>    <span class="d">python</span>        UK Basel 3.1 / CRR risk-weighted assets engine'
+        - '<span class="k">thecoachesapp</span>     <span class="g">live</span>          Training Den — session planning for swim clubs'
+        - '<span class="k">watchfire</span>         <span class="d">python</span>        regulatory citations, checkable in CI'
+        - '<span class="k">moonlit</span>           <span class="d">python</span>        uv-native zipapp builder'
+        - '<span class="k">mooring</span>           <span class="d">python</span>        git-free notebook sharing over the GitHub API'
+        - '<span class="k">curfew</span>            <span class="d">python</span>        local-first dependency &amp; boundary checking'
+        - ""
+        - '<span class="d">try</span> <span class="k">bank</span><span class="d">,</span> <span class="k">swim</span> <span class="d">or</span> <span class="k">tools</span> <span class="d">for detail ·</span> <span class="k">open &lt;name&gt;</span> <span class="d">to visit one</span>'
+
+    - name: bank
+      blurb: the regulatory work
+      lines:
+        - ""
+        - '<span class="w">UK Credit Risk RWA Calculator</span>'
+        - "High-performance Risk-Weighted Assets calculation for Basel 3.1 and CRR."
+        - ""
+        - '<span class="row"><span class="rk">approaches</span><span class="rv">Standardised, F-IRB and A-IRB</span></span>'
+        - '<span class="row"><span class="rk">performance</span><span class="rv">50–100× the equivalent pandas pipeline (Polars)</span></span>'
+        - '<span class="row"><span class="rk">tests</span><span class="rv">c5,000, cross-checked against the regulator''s worked examples</span></span>'
+        - '<span class="row"><span class="rk">tracking</span><span class="rv">PRA PS1/26 — the Basel 3.1 transposition for UK firms</span></span>'
+        - ""
+        - '<span class="w">watchfire</span>'
+        - "Regulatory citations as annotations that fail the build when they rot."
+        - ""
+        - '  <span class="g">@cites</span>(<span class="k">"CRR Art. 153(1)(a)"</span>)'
+        - '  <span class="d">def</span> corporate_rw(pd, lgd, m): ...'
+        - ""
+        - '  <span class="d">$</span> watchfire check'
+        - '  <span class="g">→</span> checked 47 citations · no issues found'
+        - ""
+        - '<span class="d">→</span> <a href="https://github.com/OpenAfterHours/rwa_calculator" target="_blank" rel="noopener">github.com/OpenAfterHours/rwa_calculator</a>'
+
+    - name: swim
+      blurb: Training Den
+      lines:
+        - ""
+        - '<span class="w">Training Den</span> <span class="d">·</span> <span class="g">live</span> <span class="d">· gooseup/thecoachesapp</span>'
+        - "A coach-first session planner for British swimming clubs."
+        - ""
+        - "A coach describes a session in normal language, on the way to the pool:"
+        - ""
+        - '  <span class="b">coach ›</span> <span class="w">"three rounds. twelve by fifty, twelve by seventy-five,</span>'
+        - '          <span class="w">twelve by hundred, twelve by two hundred. all A2,</span>'
+        - '          <span class="w">twenty seconds rest. the hundreds stay IM."</span>'
+        - ""
+        - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds · 12 sets · 2 assumptions flagged for review'
+        - '  <span class="d">check</span> <span class="g">→</span> <span class="k">15,300 m</span> — computed by the application, never by the model'
+        - ""
+        - "That last line is the whole design. The model may interpret, organise"
+        - "and suggest; it may not assert a number. Totals are calculated"
+        - "deterministically and tested against worked examples — the same rule"
+        - "as the risk engine, in a wetter building."
+        - ""
+        - '<span class="d">→</span> <a href="https://trainingden.app" target="_blank" rel="noopener">trainingden.app</a> <span class="d">·</span> <a href="https://github.com/gooseup/thecoachesapp" target="_blank" rel="noopener">github.com/gooseup/thecoachesapp</a>'
+
+    - name: tools
+      blurb: the small Python tooling
+      lines:
+        - ""
+        - '<span class="row"><span class="rk">moonlit</span><span class="rv">uv-native zipapp builder. One <span class="k">.pyz</span>, no virtualenv on the target.</span></span>'
+        - '<span class="row"><span class="rk">mooring</span><span class="rv">Git-free marimo notebook sharing — all sync over the GitHub API.</span></span>'
+        - '<span class="row"><span class="rk">curfew</span><span class="rv">Local-first dependency and module-boundary checks. No network, no telemetry.</span></span>'
+        - ""
+        - '<span class="d">Mostly things I needed once, then made properly so the next person</span>'
+        - '<span class="d">could have them for free.</span>'
+
+    - name: writing
+      blurb: the dispatches
+      lines:
+        - ""
+        - '<span class="d">2026-08-04</span>  <span class="k">Part 8</span>  <span class="w">What I Got Wrong, What''s Next</span> <span class="d">· 11 min</span>'
+        - '<span class="d">2026-07-21</span>  <span class="k">Part 7</span>  <span class="w">Testing a Regulatory Engine</span> <span class="d">· 13 min</span>'
+        - '<span class="d">2026-07-07</span>  <span class="k">Part 6</span>  <span class="w">CRM, MOFs, and Other Edge-Case Archaeology</span> <span class="d">· 14 min</span>'
+        - '<span class="d">2026-06-23</span>  <span class="k">Part 5</span>  <span class="w">The Output Floor and Why Basel 3.1 Bites</span> <span class="d">· 14 min</span>'
+        - '<span class="d">2026-06-09</span>  <span class="k">Part 4</span>  <span class="w">Building With an Agent Swarm</span> <span class="d">· 13 min</span>'
+        - '<span class="d">2026-05-26</span>  <span class="k">Part 3</span>  <span class="w">Risk Weights Are Not a Lookup Table</span> <span class="d">· 13 min</span>'
+        - '<span class="d">2026-05-12</span>  <span class="k">Part 2</span>  <span class="w">The Pipeline</span> <span class="d">· 12 min</span>'
+        - '<span class="d">2026-04-28</span>  <span class="k">Part 1</span>  <span class="w">Building a UK Basel 3.1 RWA Calculator in Public</span> <span class="d">· 5 min</span>'
+        - ""
+        - '<span class="d">run</span> <span class="k">read</span> <span class="d">to open the archive properly</span>'
+
+    # NOTE: rewrite this one in your own words — it is the block a hiring
+    # manager will read twice.
+    - name: hire
+      blurb: what I'm looking for
+      lines:
+        - ""
+        - '<span class="row"><span class="rk">now</span><span class="rv">Software engineering in financial services, Edinburgh.</span></span>'
+        - '<span class="row"><span class="rk">after hours</span><span class="rv">Five open-source repos and one live product, shipped solo.</span></span>'
+        - '<span class="row"><span class="rk">good at</span><span class="rv">Turning a dense specification into tested, boring, correct code.</span></span>'
+        - '<span class="row"><span class="rk">looking for</span><span class="rv">Teams that write things down, test what they ship, and can explain their numbers to someone who did not write them.</span></span>'
+        - '<span class="row"><span class="rk">reach me</span><span class="rv"><a href="mailto:hello@openafterhours.dev">hello@openafterhours.dev</a></span></span>'
+
+    - name: cv
+      blurb: the two-page version
+      lines:
+        - ""
+        - '<span class="d">Harrison_P_CV_2026_v7_FINAL(2).pdf — page 1 of 2</span>'
+        - ""
+        - '  <span class="d">PROFESSIONAL PROFILE</span>'
+        - '  <span class="d">A results-driven and detail-oriented software engineer with a</span>'
+        - '  <span class="d">proven track record of delivering high-quality solutions in</span>'
+        - '  <span class="d">fast-paced environments. Excellent communicator, comfortable</span>'
+        - '  <span class="d">engaging with stakeholders at all levels.</span>'
+        - ""
+        - '  <span class="d">KEY SKILLS</span>'
+        - '  <span class="d">Python · Attention to detail · SQL · Team player · CI/CD ·</span>'
+        - '  <span class="d">Stakeholder management · Works well under pressure · Excel</span>'
+        - ""
+        - '  <span class="d">INTERESTS</span>'
+        - '  <span class="d">Reading, technology, </span><span class="k">swimming</span><span class="d">, and spending time with family.</span>'
+        - ""
+        - '<span class="r">note</span> — the word <span class="k">swimming</span> appears once, under Interests,'
+        - 'between "technology" and "family". There is a live application'
+        - 'behind that word, used by coaches at a poolside, and the format'
+        - 'had no way to tell you. Run <span class="k">swim</span>.'
+
 # Masthead strip
 issue: "№ 001 · Vol. I · 2026"
 masthead_lead: OpenAfterHours

@@ -17,6 +17,7 @@ copyright = """
 extra_css = [
   "stylesheets/colors_and_type.css",
   "stylesheets/page.css",
+  "stylesheets/terminal.css",
 ]
 
 # Explicit nav — keeps the homepage clean and groups dispatches.
