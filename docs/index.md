@@ -43,6 +43,7 @@ terminal:
     curfew: https://github.com/OpenAfterHours/curfew
     github: https://github.com/OpenAfterHours
     gooseup: https://github.com/gooseup
+    linkedin: https://www.linkedin.com/in/phil-harrison-859a0bb8/
 
   commands:
     - name: whoami
@@ -156,7 +157,7 @@ terminal:
         - '<span class="row"><span class="rk">after hours</span><span class="rv">Five open-source repos and one live product, shipped solo.</span></span>'
         - '<span class="row"><span class="rk">good at</span><span class="rv">Turning a dense specification into tested, boring, correct code.</span></span>'
         - '<span class="row"><span class="rk">looking for</span><span class="rv">Teams that write things down, test what they ship, and can explain their numbers to someone who did not write them.</span></span>'
-        - '<span class="row"><span class="rk">reach me</span><span class="rv"><a href="mailto:hello@openafterhours.dev">hello@openafterhours.dev</a></span></span>'
+        - '<span class="row"><span class="rk">reach me</span><span class="rv"><a href="https://www.linkedin.com/in/phil-harrison-859a0bb8/" target="_blank" rel="noopener">linkedin.com/in/phil-harrison</a> <span class="d">— or</span> <span class="k">open linkedin</span></span></span>'
 
     - name: cv
       blurb: the two-page version
@@ -376,5 +377,5 @@ links:
   - { label: "github · watchfire",       url: "https://github.com/OpenAfterHours/watchfire",       external: true }
   - { label: "github · mooring",         url: "https://github.com/OpenAfterHours/mooring",         external: true }
   - { label: "github · curfew",          url: "https://github.com/OpenAfterHours/curfew",          external: true }
-  - { label: "email",                    url: "mailto:hello@openafterhours.dev",                   external: false }
+  - { label: "linkedin",                 url: "https://www.linkedin.com/in/phil-harrison-859a0bb8/", external: true }
 ---
