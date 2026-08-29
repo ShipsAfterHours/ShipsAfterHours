@@ -93,7 +93,7 @@ terminal:
         - "In Training Den, a coach describes a session in their own words and"
         - "the model drafts it. The application then computes the distance:"
         - ""
-        - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds · 12 sets · 2 assumptions flagged for review'
+        - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds × 2,050 m · 12 sets · 2 assumptions flagged'
         - '  <span class="d">check</span> <span class="g">→</span> <span class="k">6,150 m</span> — calculated and tested against worked examples'
         - ""
         - "Same rule in the risk engine, in a drier building. If a computed"
@@ -131,7 +131,7 @@ terminal:
         - '          <span class="w">six by hundred, two by two hundred. all A2,</span>'
         - '          <span class="w">twenty seconds rest. the hundreds stay IM."</span>'
         - ""
-        - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds · 12 sets · 2 assumptions flagged for review'
+        - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds × 2,050 m · 12 sets · 2 assumptions flagged'
         - '  <span class="d">check</span> <span class="g">→</span> <span class="k">6,150 m</span> — computed by the application, never by the model'
         - ""
         - "That last line is the whole design. The model may interpret, organise"
@@ -265,7 +265,7 @@ agents:
     part; reviewing what they produce is the job.
   rule: The model may interpret, organise and suggest. It may not assert a number.
   demo:
-    - { p: "draft", arrow: "→", v: "3 rounds · 12 sets · 2 assumptions flagged" }
+    - { p: "draft", arrow: "→", v: "3 rounds × 2,050 m · 2 assumptions flagged" }
     - { p: "check", arrow: "→", v: "6,150 m — computed, then tested" }
   note: >-
     A coach describes a session in their own words; the model drafts it and the
