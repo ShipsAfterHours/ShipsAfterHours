@@ -90,7 +90,7 @@ terminal:
         - "the model drafts it. The application then computes the distance:"
         - ""
         - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds · 12 sets · 2 assumptions flagged for review'
-        - '  <span class="d">check</span> <span class="g">→</span> <span class="k">15,300 m</span> — calculated and tested against worked examples'
+        - '  <span class="d">check</span> <span class="g">→</span> <span class="k">6,150 m</span> — calculated and tested against worked examples'
         - ""
         - "Same rule in the risk engine, in a drier building. If a computed"
         - "number is wrong you can find out why. If a model asserted it, you"
@@ -119,12 +119,12 @@ terminal:
         - ""
         - "A coach describes a session in normal language, on the way to the pool:"
         - ""
-        - '  <span class="b">coach ›</span> <span class="w">"three rounds. twelve by fifty, twelve by seventy-five,</span>'
-        - '          <span class="w">twelve by hundred, twelve by two hundred. all A2,</span>'
+        - '  <span class="b">coach ›</span> <span class="w">"three rounds. twelve by fifty, six by seventy-five,</span>'
+        - '          <span class="w">six by hundred, two by two hundred. all A2,</span>'
         - '          <span class="w">twenty seconds rest. the hundreds stay IM."</span>'
         - ""
         - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds · 12 sets · 2 assumptions flagged for review'
-        - '  <span class="d">check</span> <span class="g">→</span> <span class="k">15,300 m</span> — computed by the application, never by the model'
+        - '  <span class="d">check</span> <span class="g">→</span> <span class="k">6,150 m</span> — computed by the application, never by the model'
         - ""
         - "That last line is the whole design. The model may interpret, organise"
         - "and suggest; it may not assert a number. Totals are calculated"
@@ -256,7 +256,7 @@ agents:
   rule: The model may interpret, organise and suggest. It may not assert a number.
   demo:
     - { p: "draft", arrow: "→", v: "3 rounds · 12 sets · 2 assumptions flagged" }
-    - { p: "check", arrow: "→", v: "15,300 m — computed, then tested" }
+    - { p: "check", arrow: "→", v: "6,150 m — computed, then tested" }
   note: >-
     A coach describes a session in their own words; the model drafts it and the
     application does the arithmetic. If a computed number is wrong you can find
