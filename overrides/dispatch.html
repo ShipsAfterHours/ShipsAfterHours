@@ -110,200 +110,37 @@
     {% endfor %}
   </section>
 
-  <section class="feature reveal" data-step="4">
+  <section class="feature elsewhere reveal" data-step="4">
     <div class="fl">
-      <div class="deck">Feature &middot; Project on file</div>
-      <h2>{{ page.meta.project.name }}</h2>
-      <p class="sell">{{ page.meta.project.tagline }}</p>
-      <ul>
-        {% for b in page.meta.project.bullets %}
-        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
-        {% endfor %}
-      </ul>
+      <div class="deck">{{ page.meta.elsewhere.deck }}</div>
+      <h2>{{ page.meta.elsewhere.head_lead }} <em>{{ page.meta.elsewhere.head_emphasis }}</em>{{ page.meta.elsewhere.head_tail }}</h2>
+      <p class="sell">{{ page.meta.elsewhere.body }}</p>
+      <p class="sell coda">{{ page.meta.elsewhere.coda }}</p>
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a class="btn btn-primary" href="{{ page.meta.project.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-        <a class="btn btn-ghost" href="{{ page.meta.project.repo_url }}#readme" target="_blank" rel="noopener">Read the docs</a>
+        {% for a in page.meta.elsewhere.actions %}
+        <a class="btn {{ 'btn-primary' if a.primary else 'btn-ghost' }}" href="{{ a.url }}" target="_blank" rel="noopener">{{ a.label }}</a>
+        {% endfor %}
       </div>
     </div>
     <div class="fr">
       <div class="formula-bg">
-        {% for f in page.meta.formula_scatter %}
+        {% for f in page.meta.elsewhere_scatter %}
         <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
         {% endfor %}
       </div>
       <div class="panel">
-        <h4>// quickstart.py</h4>
+        <h4>// exits</h4>
         <div class="term">
-          <div><span class="o">from</span> <span class="c">rwa_calc</span> <span class="o">import</span> <span class="c">CreditRiskCalc</span></div>
+          <div><span class="p">$</span> <span class="c">open github</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="a">github.com/OpenAfterHours</span></div>
           <div>&nbsp;</div>
-          <div><span class="c">result</span> <span class="o">=</span> <span class="a">CreditRiskCalc</span>(</div>
-          <div>&nbsp;&nbsp;<span class="c">framework</span><span class="o">=</span><span class="a">"basel_3_1"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="c">approach</span><span class="o">=</span><span class="a">"f_irb"</span>,</div>
-          <div>).<span class="a">calculate</span>(<span class="c">exposures</span>)</div>
+          <div><span class="p">$</span> <span class="c">open swim</span></div>
+          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="a">trainingden.app</span></div>
           <div>&nbsp;</div>
-          <div><span class="o">$</span> <span class="p">&rarr;</span> <span class="o">RWA computed in 1.42s &middot; 12M rows</span></div>
+          <div><span class="o">six repos &middot; one live product &middot; after hours</span></div>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="feature reveal" data-step="4">
-    <div class="fl">
-      <div class="deck">Feature &middot; Project on file</div>
-      <h2>{{ page.meta.project_moonlit.name }}</h2>
-      <p class="sell">{{ page.meta.project_moonlit.tagline }}</p>
-      <ul>
-        {% for b in page.meta.project_moonlit.bullets %}
-        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
-        {% endfor %}
-      </ul>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a class="btn btn-primary" href="{{ page.meta.project_moonlit.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-        <a class="btn btn-ghost" href="{{ page.meta.project_moonlit.docs_url }}" target="_blank" rel="noopener">Read the docs</a>
-      </div>
-    </div>
-    <div class="fr">
-      <div class="formula-bg">
-        {% for f in page.meta.moonlit_scatter %}
-        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
-        {% endfor %}
-      </div>
-      <div class="panel">
-        <h4>// build.sh</h4>
-        <div class="term">
-          <div><span class="o">$</span> <span class="c">uv add --dev moonlit</span></div>
-          <div>&nbsp;</div>
-          <div><span class="o">$</span> <span class="c">moonlit build</span> <span class="a">--python-version 3.13</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">app.pyz &middot; 4.2 MB &middot; 23 deps bundled</span></div>
-          <div>&nbsp;</div>
-          <div><span class="o">$</span> <span class="c">./app.pyz</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">hello, world &middot; cold start 180ms</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="feature reveal" data-step="4">
-    <div class="fl">
-      <div class="deck">Feature &middot; Project on file</div>
-      <h2>{{ page.meta.project_watchfire.name }}</h2>
-      <p class="sell">{{ page.meta.project_watchfire.tagline }}</p>
-      <ul>
-        {% for b in page.meta.project_watchfire.bullets %}
-        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
-        {% endfor %}
-      </ul>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a class="btn btn-primary" href="{{ page.meta.project_watchfire.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-        <a class="btn btn-ghost" href="{{ page.meta.project_watchfire.docs_url }}" target="_blank" rel="noopener">Read the docs</a>
-      </div>
-    </div>
-    <div class="fr">
-      <div class="formula-bg">
-        {% for f in page.meta.watchfire_scatter %}
-        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
-        {% endfor %}
-      </div>
-      <div class="panel">
-        <h4>// quickstart.py</h4>
-        <div class="term">
-          <div><span class="o">from</span> <span class="c">watchfire</span> <span class="o">import</span> <span class="c">cites</span></div>
-          <div>&nbsp;</div>
-          <div><span class="a">@cites</span>(<span class="a">"CRR Art. 153(1)(a)"</span>)</div>
-          <div><span class="o">def</span> <span class="c">corporate_rw</span>(<span class="c">pd, lgd, m</span>): ...</div>
-          <div>&nbsp;</div>
-          <div><span class="o">$</span> <span class="c">uv run watchfire check</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">checked 47 citations &middot; no issues found</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="feature reveal" data-step="4">
-    <div class="fl">
-      <div class="deck">Feature &middot; Project on file</div>
-      <h2>{{ page.meta.project_mooring.name }}</h2>
-      <p class="sell">{{ page.meta.project_mooring.tagline }}</p>
-      <ul>
-        {% for b in page.meta.project_mooring.bullets %}
-        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
-        {% endfor %}
-      </ul>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a class="btn btn-primary" href="{{ page.meta.project_mooring.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-        <a class="btn btn-ghost" href="{{ page.meta.project_mooring.docs_url }}" target="_blank" rel="noopener">Read the docs</a>
-      </div>
-    </div>
-    <div class="fr">
-      <div class="formula-bg">
-        {% for f in page.meta.mooring_scatter %}
-        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
-        {% endfor %}
-      </div>
-      <div class="panel">
-        <h4>// hub.sh</h4>
-        <div class="term">
-          <div><span class="o">$</span> <span class="c">uv run mooring hub</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">hub &middot; http://localhost:8421</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">logged in &middot; 12 notebooks</span></div>
-          <div>&nbsp;</div>
-          <div><span class="o">$</span> <span class="c">pull</span> <span class="a">risk_model.py</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">1 commit &middot; no conflicts</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="feature reveal" data-step="4">
-    <div class="fl">
-      <div class="deck">Feature &middot; Project on file</div>
-      <h2>{{ page.meta.project_curfew.name }}</h2>
-      <p class="sell">{{ page.meta.project_curfew.tagline }}</p>
-      <ul>
-        {% for b in page.meta.project_curfew.bullets %}
-        <li><b>{{ b.label }}.</b> {{ b.body }}</li>
-        {% endfor %}
-      </ul>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a class="btn btn-primary" href="{{ page.meta.project_curfew.repo_url }}" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-        <a class="btn btn-ghost" href="{{ page.meta.project_curfew.docs_url }}" target="_blank" rel="noopener">Read the docs</a>
-      </div>
-    </div>
-    <div class="fr">
-      <div class="formula-bg">
-        {% for f in page.meta.curfew_scatter %}
-        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
-        {% endfor %}
-      </div>
-      <div class="panel">
-        <h4>// check.sh</h4>
-        <div class="term">
-          <div><span class="o">$</span> <span class="c">uv tool install curfew</span></div>
-          <div>&nbsp;</div>
-          <div><span class="o">$</span> <span class="c">curfew check</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">boundaries ok &middot; externals ok</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="o">38 modules &middot; no issues found</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="latest reveal" data-step="5">
-    <h2>Recent dispatches <span class="small">// archive {% if page.meta.posts %}{% else %}&middot; coming soon{% endif %}</span></h2>
-    {% if page.meta.posts %}
-      {% for p in page.meta.posts %}
-        <a href="{{ p.url }}" class="post">
-          <span class="date">{{ p.date }}</span>
-          <span class="kicker">{{ p.kicker }}</span>
-          <span class="title">{{ p.title }}</span>
-          <span class="read">{{ p.read }}</span>
-        </a>
-      {% endfor %}
-    {% else %}
-      <div style="padding: 24px 0; border-top: 1px solid rgba(26,26,46,.15); border-bottom: 1px solid rgba(26,26,46,.15); font-family: var(--font-mono); font-size: 13px; color: var(--oah-slate-400); text-align: center; letter-spacing: 0.06em;">
-        &#9790; The first dispatch is in draft. Subscribe via RSS or check back shortly.
-      </div>
-    {% endif %}
   </section>
 
   <footer class="strap reveal" data-step="5">
@@ -395,7 +232,7 @@
       const urls = T.urls || {};
       const key = String(arg || '').toLowerCase().replace(/[^a-z]/g, '');
       const alias = { rwacalculator: 'rwa', rwacalc: 'rwa', calculator: 'rwa', bank: 'rwa',
-                      thecoachesapp: 'coaches', trainingden: 'swim', den: 'swim' };
+                      coaches: 'swim', thecoachesapp: 'swim', trainingden: 'swim', den: 'swim' };
       const target = urls[key] || urls[alias[key]];
       if (!target) {
         show(['', `<span class="r">open:</span> nothing called ` +

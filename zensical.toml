@@ -20,16 +20,15 @@ extra_css = [
   "stylesheets/terminal.css",
 ]
 
-# Explicit nav — keeps the homepage clean and groups dispatches.
+# Explicit nav — the site is a single page.
 nav = [
   { "Dispatch" = "index.md" },
-  { "Dispatches" = "dispatches/index.md" },
 ]
 
 [project.theme]
 
-# Custom templates live in ./overrides — used by index.md (dispatch.html)
-# and individual dispatches (post.html).
+# Custom templates live in ./overrides — index.md renders through
+# dispatch.html, which is the whole site.
 custom_dir = "overrides"
 
 favicon = "images/openafterhours_icon_512.png"

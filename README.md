@@ -22,7 +22,7 @@ All under the [OpenAfterHours](https://github.com/OpenAfterHours) org, with docs
 
 This repo doubles as my GitHub profile and the source for the **After-Hours Dispatch** — a static site built with [Zensical](https://zensical.org) and deployed to GitHub Pages on every push to `main`.
 
-- **Content** lives in `docs/` — the data-driven homepage (`docs/index.md`, all content in front matter) and dispatch posts under `docs/dispatches/`.
+- **Content** lives in `docs/` — a single data-driven page (`docs/index.md`, all content in front matter).
 - **Theme** — custom Jinja templates in `overrides/`, design tokens and styles in `docs/stylesheets/`.
 
 ```bash
