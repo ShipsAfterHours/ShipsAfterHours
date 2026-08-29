@@ -110,6 +110,13 @@
         {% endfor %}
       </div>
       <p class="note">{{ page.meta.agents.note }}</p>
+      {% if page.meta.agents.tool %}
+      {% set t = page.meta.agents.tool %}
+      <a class="tool" href="{{ t.url }}" target="_blank" rel="noopener">
+        <span class="th"><span class="tn">{{ t.name }}</span><span class="tl">{{ t.lang }}</span></span>
+        <span class="tb">{{ t.body }}</span>
+      </a>
+      {% endif %}
     </div>
   </section>
 
@@ -123,7 +130,7 @@
       <a class="proj" href="{{ p.url }}" target="_blank" rel="noopener">
         <span class="pt">
           <span class="pn">{{ p.name }}</span>
-          <span class="ps{{ ' on' if p.live }}">{{ p.status }}</span>
+          <span class="ps ps-{{ p.status }}{{ ' on' if p.live }}">{{ p.status }}</span>
         </span>
         <span class="pb">{{ p.blurb }}</span>
       </a>

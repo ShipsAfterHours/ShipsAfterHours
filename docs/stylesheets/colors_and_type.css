@@ -40,6 +40,11 @@
   --oah-owl-eye:          #ffc857;   /* Star / eye yellow               */
   --oah-terminal-green:   #3dd68c;   /* $_ prompt on dark                */
 
+  /* Language accent — owl terracotta, corrected per scheme so the small
+     uppercase chips clear 4.5:1 on both grounds (the raw #c9442a is 3.99
+     on slate-900). Used for the `rust` tag beside the Python ones.        */
+  --oah-rust:             light-dark(#b03a22, #e2664a);
+
   /* ---- Slate night sky (dark foundation) ---- */
   --oah-slate-900:        #0d0e11;   /* bg                               */
   --oah-slate-850:        #11141a;   /* card elevated                    */

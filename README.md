@@ -12,6 +12,8 @@ All under the [OpenAfterHours](https://github.com/OpenAfterHours) org, with docs
 
 | Project | What it does |
 | --- | --- |
+| [**abeam**](https://github.com/OpenAfterHours/abeam) | One window for an AI coding session — the agent hosted in a pty pane, with the git worktree, the file it just wrote and a shell beside it. Rust. |
+| [**kedge**](https://github.com/OpenAfterHours/kedge) | Turns manual Excel processes into reviewable, reproducible [marimo](https://marimo.io) runbooks, with an AI copilot held to a controlled tool surface. |
 | [**rwa_calculator**](https://github.com/OpenAfterHours/rwa_calculator) | High-performance, PRA PS1/26-compliant credit-risk RWA calculator (Standardised + F-IRB/A-IRB), built with Python and Polars. · [docs](https://openafterhours.club/rwa_calculator/) |
 | [**watchfire**](https://github.com/OpenAfterHours/watchfire) | Static analysis for UK financial regulatory citations in Python — executable audit trails that run in CI. · [docs](https://openafterhours.club/watchfire/) |
 | [**curfew**](https://github.com/OpenAfterHours/curfew) | Local-first Python dependency & module-boundary checker — offline architecture enforcement, no phone-home. · [docs](https://openafterhours.club/curfew/) |

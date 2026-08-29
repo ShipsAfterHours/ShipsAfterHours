@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A personal static site — Phil Harrison / OpenAfterHours — built with [Zensical](https://zensical.org/docs/) (a static site generator from the MkDocs/Material team) and deployed to GitHub Pages. The repo is **content + theme only**; the software it writes about (the RWA calculator, `watchfire`, `moonlit`, `mooring`, `curfew`) lives in separate repos under the `OpenAfterHours` GitHub org. There is no application code here to test.
+A personal static site — Phil Harrison / OpenAfterHours — built with [Zensical](https://zensical.org/docs/) (a static site generator from the MkDocs/Material team) and deployed to GitHub Pages. The repo is **content + theme only**; the software it writes about (`abeam`, the RWA calculator, `kedge`, `watchfire`, `moonlit`, `mooring`, `curfew`) lives in separate repos under the `OpenAfterHours` GitHub org. There is no application code here to test.
 
 ## Commands
 
@@ -40,7 +40,7 @@ The page has two layers. The `terminal:` block renders a working shell over ever
 
 **What the page says.** The through-line is *"I learn things by building them — the domains are unrelated, the practice is identical."* Keep it domain-general: banking is one of several examples (swimming, Python packaging), never the frame. The `learning:` block is the one thing worth keeping current; a stale `asof` date there is worse than no date.
 
-The `built:` block lists every project at equal weight — no domain leads. The org page catalogues them properly; the `actions:` buttons point at it. Training Den's repo (`gooseup/thecoachesapp`) is **private** — never link to it, link to <https://trainingden.app>.
+The `built:` block lists every project at equal weight — no domain leads. It is the one thing that goes stale when a repo is added: the list, `built.note`'s count, the `hire` and `projects` terminal commands, `terminal.urls`, and the README table all have to move together. `status:` drives the chip colour via `.ps-<status>`. The org page catalogues them properly; the `actions:` buttons point at it. Training Den's repo (`gooseup/thecoachesapp`) is **private** — never link to it, link to <https://trainingden.app>.
 
 ### Styling
 

@@ -127,6 +127,7 @@ html:has(.lp-bench) { color-scheme: light dark; }
 /* ---- the two panels ----------------------------------------- */
 .lp-bench .panels {
   display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  align-items: start;
   padding-bottom: clamp(40px, 6vw, 64px);
 }
 .lp-bench .card {
@@ -177,6 +178,30 @@ html:has(.lp-bench) { color-scheme: light dark; }
 .lp-bench .agents .demo .ar { color: var(--oah-terminal-green); }
 .lp-bench .agents .demo .v  { color: var(--fg); }
 .lp-bench .agents .note { font-size: 13.5px; }
+
+/* the tool that does the reviewing half — a card inside the card */
+.lp-bench .agents .tool {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-top: 16px; padding: 14px 16px;
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--bg);
+  transition: border-color var(--dur-med) var(--ease-std);
+}
+.lp-bench .agents .tool:hover { border-color: var(--oah-orange); }
+.lp-bench .agents .tool .th { display: flex; align-items: center; gap: 10px; }
+.lp-bench .agents .tool .tn {
+  font-family: var(--font-mono); font-size: 13.5px; font-weight: 500; color: var(--fg);
+}
+.lp-bench .agents .tool:hover .tn { color: var(--oah-orange); }
+.lp-bench .agents .tool .tl {
+  margin-left: auto;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--oah-rust);
+  border: 1px solid color-mix(in srgb, var(--oah-rust) 40%, transparent);
+  border-radius: var(--radius-pill); padding: 2px 8px;
+}
+.lp-bench .agents .tool .tb { font-size: 13px; line-height: 1.55; color: var(--fg-muted); }
 
 /* ---- section heads ------------------------------------------ */
 .lp-bench .sec-head {
@@ -229,6 +254,8 @@ html:has(.lp-bench) { color-scheme: light dark; }
   display: inline-flex; align-items: center; gap: 6px;
   color: var(--oah-terminal-green);
 }
+/* the one project that isn't Python — worth being able to see at a glance */
+.lp-bench .proj .ps-rust { color: var(--oah-rust); }
 .lp-bench .proj .ps.on::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
   background: var(--oah-terminal-green);

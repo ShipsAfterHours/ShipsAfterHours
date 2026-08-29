@@ -27,13 +27,16 @@ terminal:
     - { t: "Hi. I'm Phil.", cls: w, speed: 55 }
     - ""
     - { t: "I learn things by building them. A capital engine for banks, a session", speed: 12 }
-    - { t: "planner that swimming coaches use at the poolside, and a handful of", speed: 12 }
-    - { t: "Python tools. The domains are unrelated; the practice is identical.", speed: 12 }
+    - { t: "planner that swimming coaches use at the poolside, and the tooling I", speed: 12 }
+    - { t: "wanted for working with coding agents. The domains are unrelated; the", speed: 12 }
+    - { t: "practice is identical.", speed: 12 }
     - ""
     - { t: "This prompt works. Type <span class=\"k\">help</span>, or click something below.", cls: d, speed: 10 }
 
   # `open <name>` targets
   urls:
+    abeam: https://github.com/OpenAfterHours/abeam
+    kedge: https://github.com/OpenAfterHours/kedge
     rwa: https://github.com/OpenAfterHours/rwa_calculator
     swim: https://trainingden.app
     watchfire: https://github.com/OpenAfterHours/watchfire
@@ -85,6 +88,7 @@ terminal:
         - ""
         - '<span class="row"><span class="rk">the loop</span><span class="rv">plan → fan out → review → merge. Running several agents at once is easy and cheap. Reviewing what they produce is the job.</span></span>'
         - '<span class="row"><span class="rk">the rule</span><span class="rv">The model may interpret, organise and suggest. It may not assert a number.</span></span>'
+        - '<span class="row"><span class="rk">the window</span><span class="rv"><span class="k">abeam</span> — the agent in a pty pane, with the git worktree, the file it just wrote and a shell beside it. A watcher drives the right-hand side, so it always shows what the agent just did. Written in Rust; used daily against Claude Code.</span></span>'
         - ""
         - "In Training Den, a coach describes a session in their own words and"
         - "the model drafts it. The application then computes the distance:"
@@ -95,6 +99,8 @@ terminal:
         - "Same rule in the risk engine, in a drier building. If a computed"
         - "number is wrong you can find out why. If a model asserted it, you"
         - "cannot — and in both of those buildings, that matters."
+        - ""
+        - '<span class="d">→</span> <span class="k">open abeam</span> <span class="d">for the window I work in.</span>'
 
     - name: projects
       blurb: everything, in one table
@@ -102,13 +108,15 @@ terminal:
         - ""
         - '<span class="d">NAME              WHERE         WHAT</span>'
         - '<span class="k">trainingden</span>       <span class="g">live</span>          Training Den — session planning for swim clubs'
+        - '<span class="k">abeam</span>             <span class="d">rust</span>          one window for an AI coding session'
         - '<span class="k">rwa_calculator</span>    <span class="d">python</span>        UK Basel 3.1 / CRR risk-weighted assets engine'
+        - '<span class="k">kedge</span>             <span class="d">python</span>        Excel processes into reviewable marimo runbooks'
         - '<span class="k">watchfire</span>         <span class="d">python</span>        regulatory citations, checkable in CI'
         - '<span class="k">moonlit</span>           <span class="d">python</span>        uv-native zipapp builder'
         - '<span class="k">mooring</span>           <span class="d">python</span>        git-free notebook sharing over the GitHub API'
         - '<span class="k">curfew</span>            <span class="d">python</span>        local-first dependency &amp; boundary checking'
         - ""
-        - '<span class="d">try</span> <span class="k">swim</span><span class="d">,</span> <span class="k">bank</span> <span class="d">or</span> <span class="k">tools</span> <span class="d">for detail ·</span> <span class="k">open &lt;name&gt;</span> <span class="d">to visit one</span>'
+        - '<span class="d">try</span> <span class="k">swim</span><span class="d">,</span> <span class="k">bank</span><span class="d">,</span> <span class="k">ai</span> <span class="d">or</span> <span class="k">tools</span> <span class="d">for detail ·</span> <span class="k">open &lt;name&gt;</span> <span class="d">to visit one</span>'
 
     - name: swim
       blurb: Training Den
@@ -172,7 +180,7 @@ terminal:
       lines:
         - ""
         - '<span class="row"><span class="rk">now</span><span class="rv">Software engineering in financial services, Edinburgh.</span></span>'
-        - '<span class="row"><span class="rk">after hours</span><span class="rv">Five open-source repos and one live product, shipped solo.</span></span>'
+        - '<span class="row"><span class="rk">after hours</span><span class="rv">Seven open-source repos and one live product, shipped solo.</span></span>'
         - '<span class="row"><span class="rk">good at</span><span class="rv">Picking up an unfamiliar domain fast, and turning a dense specification into tested, boring, correct code.</span></span>'
         - '<span class="row"><span class="rk">and lately</span><span class="rv">Getting real work out of coding agents without letting them near the numbers.</span></span>'
         - '<span class="row"><span class="rk">looking for</span><span class="rv">Teams that write things down, test what they ship, and can explain their numbers to someone who did not write them.</span></span>'
@@ -246,6 +254,8 @@ learning:
       v: Training periodisation, from coaches who have done it for thirty years.
     - k: regulation
       v: PRA PS1/26, and where its worked examples disagree with its text.
+    - k: rust
+      v: Learning it the only way that sticks — by writing abeam in it.
 
 # Right panel — the AI practice, stated as a rule rather than a claim.
 agents:
@@ -261,21 +271,38 @@ agents:
     A coach describes a session in their own words; the model drafts it and the
     application does the arithmetic. If a computed number is wrong you can find
     out why. If a model asserted it, you cannot.
+  # Reviewing is the expensive half of the loop, so it gets its own tool.
+  tool:
+    name: abeam
+    lang: rust
+    url: https://github.com/OpenAfterHours/abeam
+    body: >-
+      Since reviewing is the job, I built the window for it — the agent in a
+      pty pane, with the git worktree, the file it just wrote and a shell
+      beside it, so the right-hand side always shows what the agent just did.
 
 # The work, at equal weight. No domain leads.
 built:
   label: Built
-  note: Five open repositories and one live product, shipped solo after hours.
+  note: Seven open repositories and one live product, shipped solo after hours.
   items:
     - name: trainingden
       status: live
       live: true
       blurb: Session planning for British swimming clubs. A coach describes a set in words; the app computes the metres.
       url: https://trainingden.app
+    - name: abeam
+      status: rust
+      blurb: One window for an AI coding session — the agent in a pty pane, with git, the file it just wrote and a shell beside it.
+      url: https://github.com/OpenAfterHours/abeam
     - name: rwa_calculator
       status: python
       blurb: UK Basel 3.1 and CRR risk-weighted assets engine. Standardised, F-IRB and A-IRB, on Polars.
       url: https://github.com/OpenAfterHours/rwa_calculator
+    - name: kedge
+      status: python
+      blurb: Turns manual Excel processes into reviewable marimo runbooks, with an AI copilot held to a controlled tool surface.
+      url: https://github.com/OpenAfterHours/kedge
     - name: watchfire
       status: python
       blurb: Regulatory citations as code annotations that fail the build when they rot.
@@ -286,7 +313,7 @@ built:
       url: https://github.com/OpenAfterHours/moonlit
     - name: mooring
       status: python
-      blurb: Git-free marimo notebook sharing for analyst teams — all sync over the GitHub API.
+      blurb: Git-free marimo notebook sharing for analyst teams — all sync over the GitHub API, no git on the machine.
       url: https://github.com/OpenAfterHours/mooring
     - name: curfew
       status: python
