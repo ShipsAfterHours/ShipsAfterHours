@@ -1,10 +1,10 @@
 ---
-template: dispatch.html
-title: OpenAfterHours · After-hours dispatch
-description: A personal dispatch from the maintainer of OpenAfterHours — open-source regulatory tools for the financial industry, built after hours.
+template: home.html
+title: Phil Harrison · OpenAfterHours
+description: I learn things by building them. Open-source Python tooling, a Basel 3.1 risk engine and a session planner for swimming clubs — built after the day job, mostly alongside a swarm of coding agents.
 
 # ─────────────────────────────────────────────────────────────
-# The landing terminal (overrides/dispatch.html renders this over
+# The landing terminal (overrides/home.html renders this over
 # the page; docs/stylesheets/terminal.css styles it).
 #
 # A working shell — Tab completes, ↑↓ recall history, → accepts the
@@ -19,16 +19,16 @@ terminal:
   ps1: "openafterhours ~ $"
   bar: "openafterhours.club — sh"
   bail: "skip the terminal · read the page →"
-  chips: [help, projects, bank, swim, tools, hire, cv]
+  chips: [help, learn, ai, projects, swim, hire, cv]
 
   boot:
     - { t: "openafterhours.club · sh · after hours", cls: d, speed: 10 }
     - ""
     - { t: "Hi. I'm Phil.", cls: w, speed: 55 }
     - ""
-    - { t: "I build software after the day job — regulatory capital engines for", speed: 12 }
-    - { t: "banks, developer tooling for Python, and a session planner that", speed: 12 }
-    - { t: "swimming coaches use at the poolside.", speed: 12 }
+    - { t: "I learn things by building them. A capital engine for banks, a session", speed: 12 }
+    - { t: "planner that swimming coaches use at the poolside, and a handful of", speed: 12 }
+    - { t: "Python tools. The domains are unrelated; the practice is identical.", speed: 12 }
     - ""
     - { t: "This prompt works. Type <span class=\"k\">help</span>, or click something below.", cls: d, speed: 10 }
 
@@ -51,51 +51,64 @@ terminal:
         - ""
         - '<span class="w">Phil Harrison</span> <span class="d">— Edinburgh, GMT</span>'
         - ""
-        - "I build software after the day job. Regulatory capital engines for"
-        - "banks, developer tooling for Python, and a session planner that"
-        - "swimming coaches use at the poolside."
+        - '<span class="w">I learn things by building them.</span>'
         - ""
-        - "The domains have nothing to do with each other. The practice is"
-        - "identical: small batches, honest tests, numbers the machine"
-        - '<span class="k">computes</span> rather than <span class="k">asserts</span>, and code that explains itself'
-        - "to whoever reads it next."
+        - "Bank capital, swim training, Python packaging. The domains have"
+        - "nothing to do with each other. The practice is identical: pick"
+        - "something I don't understand, build it properly, and find out"
+        - "where the specification goes quiet."
+        - ""
+        - "Most of that now happens alongside a swarm of coding agents. They"
+        - '<span class="k">interpret</span>, organise and suggest; they never <span class="k">assert</span> a number.'
+        - ""
+        - '<span class="d">try</span> <span class="k">learn</span> <span class="d">for what I''m chewing on, or</span> <span class="k">ai</span> <span class="d">for how that actually works</span>'
+
+    - name: learn
+      blurb: what I'm chewing on right now
+      lines:
+        - ""
+        - '<span class="d">August 2026</span>'
+        - ""
+        - '<span class="row"><span class="rk">agents</span><span class="rv">Orchestrating swarms of coding agents — plan, fan out, review, merge. The fan-out is the cheap part; the review step is where the value is.</span></span>'
+        - '<span class="row"><span class="rk">polars</span><span class="rv">Query-plan internals. Why the 50–100× speed-up happens, not just that it does.</span></span>'
+        - '<span class="row"><span class="rk">swimming</span><span class="rv">Training periodisation, from coaches who have been doing it for thirty years.</span></span>'
+        - '<span class="row"><span class="rk">regulation</span><span class="rv">PRA PS1/26 — the UK Basel 3.1 transposition, and where its worked examples disagree with the text.</span></span>'
+        - ""
+        - '<span class="d">None of these are my job. That is rather the point — I pick something</span>'
+        - '<span class="d">I don''t understand, build the thing, and find out what the spec left out.</span>'
+
+    - name: ai
+      blurb: how the agents actually get used
+      lines:
+        - ""
+        - '<span class="w">Working with agents</span>'
+        - ""
+        - '<span class="row"><span class="rk">the loop</span><span class="rv">plan → fan out → review → merge. Running several agents at once is easy and cheap. Reviewing what they produce is the job.</span></span>'
+        - '<span class="row"><span class="rk">the rule</span><span class="rv">The model may interpret, organise and suggest. It may not assert a number.</span></span>'
+        - ""
+        - "In Training Den, a coach describes a session in their own words and"
+        - "the model drafts it. The application then computes the distance:"
+        - ""
+        - '  <span class="d">draft</span> <span class="g">→</span> 3 rounds · 12 sets · 2 assumptions flagged for review'
+        - '  <span class="d">check</span> <span class="g">→</span> <span class="k">15,300 m</span> — calculated and tested against worked examples'
+        - ""
+        - "Same rule in the risk engine, in a drier building. If a computed"
+        - "number is wrong you can find out why. If a model asserted it, you"
+        - "cannot — and in both of those buildings, that matters."
 
     - name: projects
       blurb: everything, in one table
       lines:
         - ""
         - '<span class="d">NAME              WHERE         WHAT</span>'
-        - '<span class="k">rwa_calculator</span>    <span class="d">python</span>        UK Basel 3.1 / CRR risk-weighted assets engine'
         - '<span class="k">trainingden</span>       <span class="g">live</span>          Training Den — session planning for swim clubs'
+        - '<span class="k">rwa_calculator</span>    <span class="d">python</span>        UK Basel 3.1 / CRR risk-weighted assets engine'
         - '<span class="k">watchfire</span>         <span class="d">python</span>        regulatory citations, checkable in CI'
         - '<span class="k">moonlit</span>           <span class="d">python</span>        uv-native zipapp builder'
         - '<span class="k">mooring</span>           <span class="d">python</span>        git-free notebook sharing over the GitHub API'
         - '<span class="k">curfew</span>            <span class="d">python</span>        local-first dependency &amp; boundary checking'
         - ""
-        - '<span class="d">try</span> <span class="k">bank</span><span class="d">,</span> <span class="k">swim</span> <span class="d">or</span> <span class="k">tools</span> <span class="d">for detail ·</span> <span class="k">open &lt;name&gt;</span> <span class="d">to visit one</span>'
-
-    - name: bank
-      blurb: the regulatory work
-      lines:
-        - ""
-        - '<span class="w">UK Credit Risk RWA Calculator</span>'
-        - "High-performance Risk-Weighted Assets calculation for Basel 3.1 and CRR."
-        - ""
-        - '<span class="row"><span class="rk">approaches</span><span class="rv">Standardised, F-IRB and A-IRB</span></span>'
-        - '<span class="row"><span class="rk">performance</span><span class="rv">50–100× the equivalent pandas pipeline (Polars)</span></span>'
-        - '<span class="row"><span class="rk">tests</span><span class="rv">c5,000, cross-checked against the regulator''s worked examples</span></span>'
-        - '<span class="row"><span class="rk">tracking</span><span class="rv">PRA PS1/26 — the Basel 3.1 transposition for UK firms</span></span>'
-        - ""
-        - '<span class="w">watchfire</span>'
-        - "Regulatory citations as annotations that fail the build when they rot."
-        - ""
-        - '  <span class="g">@cites</span>(<span class="k">"CRR Art. 153(1)(a)"</span>)'
-        - '  <span class="d">def</span> corporate_rw(pd, lgd, m): ...'
-        - ""
-        - '  <span class="d">$</span> watchfire check'
-        - '  <span class="g">→</span> checked 47 citations · no issues found'
-        - ""
-        - '<span class="d">→</span> <a href="https://github.com/OpenAfterHours/rwa_calculator" target="_blank" rel="noopener">github.com/OpenAfterHours/rwa_calculator</a>'
+        - '<span class="d">try</span> <span class="k">swim</span><span class="d">,</span> <span class="k">bank</span> <span class="d">or</span> <span class="k">tools</span> <span class="d">for detail ·</span> <span class="k">open &lt;name&gt;</span> <span class="d">to visit one</span>'
 
     - name: swim
       blurb: Training Den
@@ -120,6 +133,29 @@ terminal:
         - ""
         - '<span class="d">→</span> <a href="https://trainingden.app" target="_blank" rel="noopener">trainingden.app</a>'
 
+    - name: bank
+      blurb: the regulatory work
+      lines:
+        - ""
+        - '<span class="w">UK Credit Risk RWA Calculator</span>'
+        - "High-performance Risk-Weighted Assets calculation for Basel 3.1 and CRR."
+        - ""
+        - '<span class="row"><span class="rk">approaches</span><span class="rv">Standardised, F-IRB and A-IRB</span></span>'
+        - '<span class="row"><span class="rk">performance</span><span class="rv">50–100× the equivalent pandas pipeline (Polars)</span></span>'
+        - '<span class="row"><span class="rk">tests</span><span class="rv">c5,000, cross-checked against the regulator''s worked examples</span></span>'
+        - '<span class="row"><span class="rk">tracking</span><span class="rv">PRA PS1/26 — the Basel 3.1 transposition for UK firms</span></span>'
+        - ""
+        - '<span class="w">watchfire</span>'
+        - "Regulatory citations as annotations that fail the build when they rot."
+        - ""
+        - '  <span class="g">@cites</span>(<span class="k">"CRR Art. 153(1)(a)"</span>)'
+        - '  <span class="d">def</span> corporate_rw(pd, lgd, m): ...'
+        - ""
+        - '  <span class="d">$</span> watchfire check'
+        - '  <span class="g">→</span> checked 47 citations · no issues found'
+        - ""
+        - '<span class="d">→</span> <a href="https://github.com/OpenAfterHours/rwa_calculator" target="_blank" rel="noopener">github.com/OpenAfterHours/rwa_calculator</a>'
+
     - name: tools
       blurb: the small Python tooling
       lines:
@@ -131,15 +167,14 @@ terminal:
         - '<span class="d">Mostly things I needed once, then made properly so the next person</span>'
         - '<span class="d">could have them for free.</span>'
 
-    # NOTE: rewrite this one in your own words — it is the block a hiring
-    # manager will read twice.
     - name: hire
       blurb: what I'm looking for
       lines:
         - ""
         - '<span class="row"><span class="rk">now</span><span class="rv">Software engineering in financial services, Edinburgh.</span></span>'
         - '<span class="row"><span class="rk">after hours</span><span class="rv">Five open-source repos and one live product, shipped solo.</span></span>'
-        - '<span class="row"><span class="rk">good at</span><span class="rv">Turning a dense specification into tested, boring, correct code.</span></span>'
+        - '<span class="row"><span class="rk">good at</span><span class="rv">Picking up an unfamiliar domain fast, and turning a dense specification into tested, boring, correct code.</span></span>'
+        - '<span class="row"><span class="rk">and lately</span><span class="rv">Getting real work out of coding agents without letting them near the numbers.</span></span>'
         - '<span class="row"><span class="rk">looking for</span><span class="rv">Teams that write things down, test what they ship, and can explain their numbers to someone who did not write them.</span></span>'
         - '<span class="row"><span class="rk">reach me</span><span class="rv"><a href="https://www.linkedin.com/in/phil-harrison-859a0bb8/" target="_blank" rel="noopener">linkedin.com/in/phil-harrison</a> <span class="d">— or</span> <span class="k">open linkedin</span></span></span>'
 
@@ -167,99 +202,117 @@ terminal:
         - 'behind that word, used by coaches at a poolside, and the format'
         - 'had no way to tell you. Run <span class="k">swim</span>.'
 
-# Masthead strip
-issue: "№ 001 · Vol. I · 2026"
-masthead_lead: OpenAfterHours
-masthead_tail: Co.
-dateline: Edinburgh · GMT · MIT licensed
+# ─────────────────────────────────────────────────────────────
+# The page beneath the terminal. Everything below is read by
+# overrides/home.html via {{ page.meta.* }} — to change what the
+# page says, change it here, not in the template.
+# ─────────────────────────────────────────────────────────────
 
-# Meta-row
-tagline: A personal dispatch from the maintainer of OpenAfterHours
-cadence: Published continuously · ☾ Written after dark
+# Header bar
+whoami: phil harrison
+location: Edinburgh · GMT · after hours
 
-# Lede
-deck: From the desk · Letter from the maintainer
-headline_lead: "Capital adequacy is a"
-headline_emphasis: public good
-headline_tail: ". The software for it should be too."
+# Lede. The terminal retypes these four fields in place on hand-off,
+# so they must stay as deck / headline / intro_long / intro_coda —
+# see LEDE in overrides/home.html.
+deck: Software engineer · open source · after hours
+headline_lead: "I learn things by "
+headline_emphasis: building
+headline_tail: " them."
 intro_long: >-
-  I build open-source tools for the financial industry —
-  quietly, after the day job. The premise is simple: banks that run the back-office cheaply can offer the public
-  better products. The maths is well-defined; the software shouldn't be a
-  moat.
+  Bank capital, swim training, Python packaging. The domains have nothing to do
+  with each other; the practice is identical — pick something I don't understand,
+  build the thing properly, and find out where the specification goes quiet.
 intro_coda: >-
-  A parallel practice, kept honest by being open, and kept warm by being
-  shared.
-byline: The Maintainer - Phil
-read_time: 1 min
+  Most of it happens after the day job, alongside a swarm of coding agents, and
+  most of it ends up open.
+byline: Phil Harrison
 
-# // Now strip
-now:
-  - Working through PRA PS1/26
-  - "Reading: On how best to utilise AI in development"
-  - "Listening: The Pragmatic Engineer"
+actions:
+  - { label: "OpenAfterHours →", url: "https://openafterhours.github.io/", primary: true }
+  - { label: "Training Den · live", url: "https://trainingden.app", primary: false }
 
-# Beliefs (4 columns, § 01 – § 04)
-beliefs:
-  - n: "01"
-    head: Capital adequacy is a public good.
-    body: >-
-      Risk-Weighted Assets, IRB, the Standardised Approach — these define
-      how safely a bank operates and how much it costs to hold a
-      customer's mortgage. The arithmetic should be transparent and the
-      implementations should be free.
-  - n: "02"
-    head: Cheap back-office, cheap products.
-    body: >-
-      Every line item that a bank pays a vendor for compliance computation
-      is a line item the customer eventually pays. Open-source the
-      computation, push the cost curve down, the saving lands somewhere
-      real.
-  - n: "03"
-    head: Sustainable software, sustainable teams.
-    body: >-
-      Agile is not a ceremony — it's a way to ship for years without
-      burning out. Small batches, honest tests, and code people are proud
-      to maintain at 11pm on a Tuesday.
-  - n: "04"
-    head: Regulators are users, not adversaries.
-    body: >-
-      PRA, BCBS, EBA — these documents are an interface. Treat them like
-      an API spec, write tests against them, and the rest follows.
+# Left panel — the learning ledger. This is the one block worth
+# keeping current; a stale date here is worse than no date.
+learning:
+  label: Currently learning
+  asof: August 2026
+  items:
+    - k: agents
+      v: Orchestrating swarms of coding agents — plan, fan out, review, merge.
+    - k: polars
+      v: Query-plan internals. Why the speed-up happens, not just that it does.
+    - k: swimming
+      v: Training periodisation, from coaches who have done it for thirty years.
+    - k: regulation
+      v: PRA PS1/26, and where its worked examples disagree with its text.
 
-# ─────────────────────────────────────────────────────────────
-# Where the work lives. The projects are catalogued on the
-# OpenAfterHours org page — this block points at it rather than
-# restating it. Rendered by the `.feature.elsewhere` section.
-# ─────────────────────────────────────────────────────────────
-elsewhere:
-  deck: Elsewhere · Where the work lives
-  head_lead: "The projects live at"
-  head_emphasis: OpenAfterHours
-  head_tail: "."
-  body: >-
-    Six repositories — a Basel 3.1 risk-weighted assets engine, a
-    regulatory citation checker that fails the build when a citation
-    rots, and the small Python tooling that ships them. They are
-    catalogued properly over there rather than restated here.
-  coda: >-
-    One is not open source. Training Den is a live product used by
-    swimming clubs, so the application itself is the only place to
-    see it working.
-  actions:
-    - { label: "OpenAfterHours →", url: "https://openafterhours.github.io/", primary: true }
-    - { label: "Training Den · live", url: "https://trainingden.app", primary: false }
+# Right panel — the AI practice, stated as a rule rather than a claim.
+agents:
+  label: Working with agents
+  lead: >-
+    Plan, fan out, review, merge. Running several agents at once is the cheap
+    part; reviewing what they produce is the job.
+  rule: The model may interpret, organise and suggest. It may not assert a number.
+  demo:
+    - { p: "draft", arrow: "→", v: "3 rounds · 12 sets · 2 assumptions flagged" }
+    - { p: "check", arrow: "→", v: "15,300 m — computed, then tested" }
+  note: >-
+    A coach describes a session in their own words; the model drafts it and the
+    application does the arithmetic. If a computed number is wrong you can find
+    out why. If a model asserted it, you cannot.
 
-# Scatter for the elsewhere panel — the repo names, no descriptions.
-elsewhere_scatter:
-  - { text: "rwa_calculator",  top: "8%",  left: "5%",  fs: 14, rot: -2.0 }
-  - { text: "Basel 3.1",       top: "16%", left: "60%", fs: 12, rot:  1.5 }
-  - { text: "watchfire",       top: "26%", left: "8%",  fs: 13, rot:  2.2 }
-  - { text: "moonlit",         top: "34%", left: "48%", fs: 16, rot: -1.0 }
-  - { text: "mooring",         top: "42%", left: "74%", fs: 11, rot:  2.5 }
-  - { text: "curfew",          top: "50%", left: "3%",  fs: 12, rot: -2.0 }
-  - { text: "trainingden",     top: "56%", left: "52%", fs: 10, rot:  1.5 }
-  - { text: "after hours",     top: "62%", left: "78%", fs: 12, rot: -2.5 }
+# The work, at equal weight. No domain leads.
+built:
+  label: Built
+  note: Five open repositories and one live product, shipped solo after hours.
+  items:
+    - name: trainingden
+      status: live
+      live: true
+      blurb: Session planning for British swimming clubs. A coach describes a set in words; the app computes the metres.
+      url: https://trainingden.app
+    - name: rwa_calculator
+      status: python
+      blurb: UK Basel 3.1 and CRR risk-weighted assets engine. Standardised, F-IRB and A-IRB, on Polars.
+      url: https://github.com/OpenAfterHours/rwa_calculator
+    - name: watchfire
+      status: python
+      blurb: Regulatory citations as code annotations that fail the build when they rot.
+      url: https://github.com/OpenAfterHours/watchfire
+    - name: moonlit
+      status: python
+      blurb: uv-native zipapp builder. One .pyz, and no virtualenv on the target machine.
+      url: https://github.com/OpenAfterHours/moonlit
+    - name: mooring
+      status: python
+      blurb: Git-free marimo notebook sharing for analyst teams — all sync over the GitHub API.
+      url: https://github.com/OpenAfterHours/mooring
+    - name: curfew
+      status: python
+      blurb: Local-first dependency and module-boundary checks. No network, no telemetry.
+      url: https://github.com/OpenAfterHours/curfew
+
+# How the work gets done — three, because there are three.
+practice:
+  label: The practice
+  items:
+    - head: Build to understand.
+      body: >-
+        Reading a specification teaches you its vocabulary. Implementing it
+        teaches you its shape, and shows you exactly where it goes quiet. Basel
+        3.1, swim periodisation, PEP 441 zipapps — different documents,
+        identical move.
+    - head: Small batches, honest tests.
+      body: >-
+        Agile is not a ceremony; it's a way to ship for years without burning
+        out. Numbers the machine computes rather than asserts, and code that
+        explains itself to whoever reads it next.
+    - head: Leave it behind.
+      body: >-
+        Open where it can be, live where it can't. Mostly these are things I
+        needed once and then made properly, so the next person can have them
+        for free.
 
 # Footer links
 links:

@@ -1,7 +1,7 @@
 [project]
 name = "luckyphil122-site"
 version = "0.1.0"
-description = "OpenAfterHours after-hours dispatch — personal site"
+description = "Phil Harrison / OpenAfterHours — personal site"
 requires-python = ">=3.12"
 dependencies = [
     "zensical>=0.0.37",

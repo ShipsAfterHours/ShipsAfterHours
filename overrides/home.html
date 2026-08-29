@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="{{ path | url }}" />
 {% endfor %}
 <!-- Everything the landing terminal does is gated behind this class, so a
-     visitor without JavaScript gets the dispatch page and nothing else. -->
+     visitor without JavaScript gets the page beneath and nothing else. -->
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -59,93 +59,95 @@
 <button id="toterm" type="button" hidden>&larr; back to the prompt</button>
 {% endif %}
 
-<article class="lp lp-dispatch">
-  <header class="top reveal" data-step="1">
-    <div class="l">{{ page.meta.issue }}</div>
-    <div class="masthead">{{ page.meta.masthead_lead }} <span class="amp">&amp;</span> {{ page.meta.masthead_tail }}</div>
-    <div class="r">{{ page.meta.dateline }}</div>
+<article class="lp-bench">
+
+  <header class="bench-top reveal" data-step="1">
+    <span class="ident">
+      <img class="mark" src="{{ 'images/openafterhours_icon_512.png' | url }}" alt="" />
+      <span class="name">{{ page.meta.whoami }}</span>
+    </span>
+    <span class="where">{{ page.meta.location }}</span>
   </header>
 
-  <div class="meta-row reveal" data-step="1">
-    <span>{{ page.meta.tagline }}</span>
-    <span><span class="dot-sep">&bull;</span> {{ page.meta.cadence }}</span>
-  </div>
+  <!-- The terminal retypes the four lede fields in place on hand-off. They
+       are rendered in full so the page still reads with JavaScript off. -->
+  <section class="intro">
+    <div class="deck" id="lede-deck">{{ page.meta.deck }}</div>
+    <h1 id="lede-head">{{ page.meta.headline_lead }}<em>{{ page.meta.headline_emphasis }}</em>{{ page.meta.headline_tail }}</h1>
+    <p class="lede" id="lede-body">{{ page.meta.intro_long }}</p>
+    <p class="lede coda" id="lede-coda">{{ page.meta.intro_coda }}</p>
 
-  <section class="lead-section">
-    <div class="lead-side reveal" data-step="2">
-      <div class="owl-mark"><img src="{{ 'images/openafterhours_icon_512.png' | url }}" alt="OpenAfterHours owl"/></div>
-      <div style="height: 24px"></div>
-      <div class="now-card">
-        <h4>// Now</h4>
-        <ul>
-          {% for n in page.meta.now %}
-          <li>{{ n }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-
-    <div class="lead-main">
-      <!-- The terminal retypes these four in place on hand-off. They are
-           rendered in full so the page still reads with JavaScript off. -->
-      <div class="deck" id="lede-deck">{{ page.meta.deck }}</div>
-      <h1 id="lede-head">{{ page.meta.headline_lead }} <em>{{ page.meta.headline_emphasis }}</em>{{ page.meta.headline_tail }}</h1>
-      <p class="lede" id="lede-body">{{ page.meta.intro_long }}</p>
-      <p class="lede" id="lede-coda" style="margin-top: 14px">{{ page.meta.intro_coda }}</p>
-      <div class="byline reveal" data-step="2">
-        <span><strong>BY</strong> &middot; <img class="avatar" src="{{ 'images/maintainer_avatar.png' | url }}" alt="{{ page.meta.byline }}" /> {{ page.meta.byline }}</span>
-        <span><strong>FILED</strong> &middot; <span id="filed-date"></span></span>
-        <span><strong>READ</strong> &middot; {{ page.meta.read_time }}</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="columns reveal" data-step="3">
-    {% for b in page.meta.beliefs %}
-    <div class="col">
-      <div class="num">&sect; {{ b.n }}</div>
-      <h3>{{ b.head }}</h3>
-      <p>{{ b.body }}</p>
-    </div>
-    {% endfor %}
-  </section>
-
-  <section class="feature elsewhere reveal" data-step="4">
-    <div class="fl">
-      <div class="deck">{{ page.meta.elsewhere.deck }}</div>
-      <h2>{{ page.meta.elsewhere.head_lead }} <em>{{ page.meta.elsewhere.head_emphasis }}</em>{{ page.meta.elsewhere.head_tail }}</h2>
-      <p class="sell">{{ page.meta.elsewhere.body }}</p>
-      <p class="sell coda">{{ page.meta.elsewhere.coda }}</p>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        {% for a in page.meta.elsewhere.actions %}
+    <div class="byline reveal" data-step="2">
+      <span class="who">
+        <img class="avatar" src="{{ 'images/maintainer_avatar.png' | url }}" alt="" />
+        {{ page.meta.byline }}
+      </span>
+      <span class="acts">
+        {% for a in page.meta.actions %}
         <a class="btn {{ 'btn-primary' if a.primary else 'btn-ghost' }}" href="{{ a.url }}" target="_blank" rel="noopener">{{ a.label }}</a>
         {% endfor %}
-      </div>
+      </span>
     </div>
-    <div class="fr">
-      <div class="formula-bg">
-        {% for f in page.meta.elsewhere_scatter %}
-        <span class="formula" style="top: {{ f.top }}; left: {{ f.left }}; font-size: {{ f.fs }}px; transform: rotate({{ f.rot }}deg);">{{ f.text }}</span>
+  </section>
+
+  <section class="panels reveal" data-step="3">
+    <div class="card learning">
+      <h4>&#47;&#47; {{ page.meta.learning.label }}<span class="asof">{{ page.meta.learning.asof }}</span></h4>
+      <ul>
+        {% for i in page.meta.learning.items %}
+        <li><b>{{ i.k }}</b><span>{{ i.v }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="card agents">
+      <h4>&#47;&#47; {{ page.meta.agents.label }}</h4>
+      <p>{{ page.meta.agents.lead }}</p>
+      <p class="rule">{{ page.meta.agents.rule }}</p>
+      <div class="demo">
+        {% for d in page.meta.agents.demo %}
+        <div><span class="p">{{ d.p }}</span> <span class="ar">{{ d.arrow }}</span> <span class="v">{{ d.v }}</span></div>
         {% endfor %}
       </div>
-      <div class="panel">
-        <h4>// exits</h4>
-        <div class="term">
-          <div><span class="p">$</span> <span class="c">open github</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="a">github.com/OpenAfterHours</span></div>
-          <div>&nbsp;</div>
-          <div><span class="p">$</span> <span class="c">open swim</span></div>
-          <div>&nbsp;&nbsp;<span class="p">&rarr;</span> <span class="a">trainingden.app</span></div>
-          <div>&nbsp;</div>
-          <div><span class="o">six repos &middot; one live product &middot; after hours</span></div>
-        </div>
+      <p class="note">{{ page.meta.agents.note }}</p>
+    </div>
+  </section>
+
+  <section class="built reveal" data-step="4">
+    <div class="sec-head">
+      <h2>&#47;&#47; {{ page.meta.built.label }}</h2>
+      <span>{{ page.meta.built.note }}</span>
+    </div>
+    <div class="grid">
+      {% for p in page.meta.built.items %}
+      <a class="proj" href="{{ p.url }}" target="_blank" rel="noopener">
+        <span class="pt">
+          <span class="pn">{{ p.name }}</span>
+          <span class="ps{{ ' on' if p.live }}">{{ p.status }}</span>
+        </span>
+        <span class="pb">{{ p.blurb }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="practice reveal" data-step="5">
+    <div class="sec-head">
+      <h2>&#47;&#47; {{ page.meta.practice.label }}</h2>
+    </div>
+    <div class="cols">
+      {% for c in page.meta.practice.items %}
+      <div class="col">
+        <h3>{{ c.head }}</h3>
+        <p>{{ c.body }}</p>
       </div>
+      {% endfor %}
     </div>
   </section>
 
   <footer class="strap reveal" data-step="5">
     <div>{{ config.copyright | safe }} &middot; Set in Space Grotesk &middot; Inter &middot; JetBrains Mono</div>
-    <div>
+    <div class="fl">
       {% for l in page.meta.links %}
       <a href="{{ l.url }}"{% if l.external %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a>
       {% endfor %}
@@ -153,16 +155,11 @@
   </footer>
 </article>
 
-<script>
-  document.getElementById('filed-date').textContent =
-    new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-</script>
-
 {% if page.meta.terminal %}
 <script id="term-data" type="application/json">{{ page.meta.terminal | tojson }}</script>
 <script>
 /* ===========================================================================
-   The landing terminal — a working shell over the dispatch page.
+   The landing terminal — a working shell over the page beneath.
    Content comes from the `terminal:` block in docs/index.md; this file only
    knows how to run it. Styling lives in docs/stylesheets/terminal.css.
    =========================================================================== */
@@ -184,7 +181,7 @@
   const ghost   = $('#term-ghost');
   const caret   = $('#term-caret');
   const promptl = $('#term-promptline');
-  const article = $('.lp-dispatch');
+  const article = $('.lp-bench');
 
   let booting = true, handedOver = false;
   let history = [], hIdx = 0, draft = '';

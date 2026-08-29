@@ -1,10 +1,10 @@
 /* =============================================================
    OpenAfterHours — the landing terminal
    -------------------------------------------------------------
-   A working shell that sits over the dispatch page on first
+   A working shell that sits over the page beneath, on first
    visit. Everything here is gated behind `html.js`, set by an
    inline script in the template head: with JavaScript off the
-   overlay never paints and the dispatch page is simply the page.
+   overlay never paints and the page beneath is simply the page.
 
    Content comes from the `terminal:` block in docs/index.md.
    Tokens are the ones in colors_and_type.css.
@@ -200,7 +200,7 @@
 }
 
 /* the page developing out of black, like paper */
-.lp-dispatch.develop { animation: term-develop 1100ms var(--ease-out) both; }
+.lp-bench.develop { animation: term-develop 1100ms var(--ease-out) both; }
 @keyframes term-develop {
   from { filter: brightness(.15) contrast(1.6) saturate(.2); }
   to   { filter: none; }
@@ -219,8 +219,11 @@
   animation: term-blink 1s steps(2) infinite;
 }
 
+/* bottom-right, not top-right: the page header puts its dateline in the
+   top-right corner and the two collide there */
 #toterm {
-  position: fixed; right: 14px; top: 14px; z-index: 300;
+  position: fixed; right: 16px; bottom: 16px; z-index: 300;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .35);
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em;
   background: var(--oah-slate-900); color: var(--oah-slate-200);
   border: 1px solid rgba(255, 145, 0, .45);
@@ -231,7 +234,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .oln.anim { animation: none; }
-  .lp-dispatch.develop { animation: none; }
+  .lp-bench.develop { animation: none; }
   #term-caret, .tcaret { animation: none; }
   .js .reveal { transition: none; }
 }

@@ -1,10 +1,10 @@
 # Hi, I'm Phil 👋
 
-I build open-source tools — quietly, after the day job, under the [**OpenAfterHours**](https://github.com/OpenAfterHours) banner.
+**I learn things by building them.** Bank capital, swim training, Python packaging — the domains have nothing to do with each other; the practice is identical. Pick something I don't understand, build the thing properly, and find out where the specification goes quiet.
 
-The premise is simple: running a cheap back-office can offer the public better products. The maths is well-defined; the software shouldn't be a moat.
+Most of it happens after the day job under the [**OpenAfterHours**](https://github.com/OpenAfterHours) banner, alongside a swarm of [Claude Code](https://www.anthropic.com/claude-code) agents — under one rule: the model may interpret, organise and suggest, but it may not assert a number.
 
-📡 **[Read the After-Hours Dispatch →](https://shipsafterhours.github.io/ShipsAfterHours/)** — a running letter on building these tools: the regulation, the engineering, and what it's like driving the work through a swarm of [Claude Code](https://www.anthropic.com/claude-code) agents.
+💻 **[openafterhours.club →](https://shipsafterhours.github.io/ShipsAfterHours/)** — the landing page is a working shell. Type `learn`, `ai` or `projects`, or skip it and read the page.
 
 ## Projects
 
@@ -20,7 +20,7 @@ All under the [OpenAfterHours](https://github.com/OpenAfterHours) org, with docs
 
 ## About this repository
 
-This repo doubles as my GitHub profile and the source for the **After-Hours Dispatch** — a static site built with [Zensical](https://zensical.org) and deployed to GitHub Pages on every push to `main`.
+This repo doubles as my GitHub profile and the source for my personal site — built with [Zensical](https://zensical.org) and deployed to GitHub Pages on every push to `main`.
 
 - **Content** lives in `docs/` — a single data-driven page (`docs/index.md`, all content in front matter).
 - **Theme** — custom Jinja templates in `overrides/`, design tokens and styles in `docs/stylesheets/`.

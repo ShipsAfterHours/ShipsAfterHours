@@ -1,11 +1,11 @@
-# Zensical config — OpenAfterHours after-hours dispatch
+# Zensical config — Phil Harrison / OpenAfterHours
 # Docs: https://zensical.org/docs/
 
 [project]
 
-site_name = "OpenAfterHours · After-hours dispatch"
-site_description = "A personal dispatch from the maintainer of OpenAfterHours — open-source regulatory tools for the financial industry, built after hours."
-site_author = "The Maintainer - Phil"
+site_name = "Phil Harrison · OpenAfterHours"
+site_description = "I learn things by building them. Open-source Python tooling, a Basel 3.1 risk engine and a session planner for swimming clubs — built after the day job, mostly alongside a swarm of coding agents."
+site_author = "Phil Harrison"
 site_url = "https://shipsafterhours.github.io/ShipsAfterHours/"
 
 copyright = """
@@ -22,13 +22,13 @@ extra_css = [
 
 # Explicit nav — the site is a single page.
 nav = [
-  { "Dispatch" = "index.md" },
+  { "Home" = "index.md" },
 ]
 
 [project.theme]
 
 # Custom templates live in ./overrides — index.md renders through
-# dispatch.html, which is the whole site.
+# home.html, which is the whole site.
 custom_dir = "overrides"
 
 favicon = "images/openafterhours_icon_512.png"
@@ -49,7 +49,7 @@ features = [
 text = "Inter"
 code = "JetBrains Mono"
 
-# Light scheme matches the editorial cream background; slate matches OAH dark.
+# The page beneath the terminal follows the visitor system preference.
 [[project.theme.palette]]
 scheme = "default"
 toggle.icon = "lucide/sun"
@@ -60,7 +60,7 @@ scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 
-# Sensible Markdown extensions for dispatch posts.
+# Sensible Markdown extensions.
 [project.markdown_extensions.abbr]
 [project.markdown_extensions.admonition]
 [project.markdown_extensions.attr_list]
