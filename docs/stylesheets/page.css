@@ -40,9 +40,13 @@ html:has(.lp-bench) { color-scheme: light dark; }
               color var(--dur-fast) var(--ease-std),
               box-shadow var(--dur-med) var(--ease-std);
 }
-.btn-primary { background: var(--oah-orange); color: #fff; }
+/* `a:visited` in colors_and_type.css is (0,1,1) and outranks a bare `.btn-*`
+   class at (0,1,0), so once these links had been followed it repainted them
+   in the visited-link colour — dark orange on the orange primary, i.e.
+   unreadable. Naming the state here takes the rules to (0,2,0) and wins. */
+.btn-primary, .btn-primary:visited { background: var(--oah-orange); color: #fff; }
 .btn-primary:hover { background: var(--primary-hover); color: #fff; box-shadow: var(--shadow-glow-strong); }
-.btn-ghost { background: transparent; color: var(--fg); border-color: var(--border-strong); }
+.btn-ghost, .btn-ghost:visited { background: transparent; color: var(--fg); border-color: var(--border-strong); }
 .btn-ghost:hover { border-color: var(--oah-orange); color: var(--oah-orange); }
 .btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
 

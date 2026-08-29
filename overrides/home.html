@@ -438,6 +438,16 @@
     document.body.classList.remove('term-open');
     window.scrollTo(0, 0);
     $('#toterm').hidden = false;
+
+    /* Blank the lede while the swallow still covers the screen. Left alone it
+       is on show, fully rendered, for the beat before the retype starts — so
+       the retype reads as overwriting finished text rather than writing it.
+       Each line keeps its final height so nothing below shifts as it fills. */
+    if (!REDUCED) LEDE.forEach(el => {
+      el.style.minHeight = el.getBoundingClientRect().height + 'px';
+      el.textContent = '';
+    });
+
     swallow.classList.remove('on');
     await sleep(REDUCED ? 0 : 300);
 
@@ -447,6 +457,7 @@
     step(1);
     await sleep(600);
     for (let i = 0; i < LEDE.length; i++) await retype(LEDE[i], stashed[i], LEDE_SPEED[i]);
+    LEDE.forEach(el => { el.style.minHeight = ''; });
     step(2); await sleep(180);
     step(3); await sleep(140);
     step(4); await sleep(140);
