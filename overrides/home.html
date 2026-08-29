@@ -190,7 +190,7 @@
   const promptl = $('#term-promptline');
   const article = $('.lp-bench');
 
-  let booting = true, handedOver = false;
+  let booting = true, handingOver = false, ledeTyped = false;
   let history = [], hIdx = 0, draft = '';
 
   document.body.classList.add('term-open');
@@ -433,8 +433,11 @@
   const stashed = LEDE.map(snapshot);
 
   async function handOver() {
-    if (handedOver) return;
-    handedOver = true;
+    /* Guard re-entrancy and the current state, not "has this ever run". The
+       prompt can be reopened with #toterm, and bailing out of it again has to
+       work as many times as someone cares to do it. */
+    if (handingOver || term.hidden) return;
+    handingOver = true;
 
     const swallow = $('#term-swallow');
     term.classList.add('dissolve');
@@ -446,11 +449,16 @@
     window.scrollTo(0, 0);
     $('#toterm').hidden = false;
 
+    /* The lede is only typed out the first time. Coming back to the page
+       after a detour to the prompt should just be there, not replay six
+       seconds of animation someone has already sat through. */
+    const typeIt = !REDUCED && !ledeTyped;
+
     /* Blank the lede while the swallow still covers the screen. Left alone it
        is on show, fully rendered, for the beat before the retype starts — so
        the retype reads as overwriting finished text rather than writing it.
        Each line keeps its final height so nothing below shifts as it fills. */
-    if (!REDUCED) LEDE.forEach(el => {
+    if (typeIt) LEDE.forEach(el => {
       el.style.minHeight = el.getBoundingClientRect().height + 'px';
       el.textContent = '';
     });
@@ -458,17 +466,19 @@
     swallow.classList.remove('on');
     await sleep(REDUCED ? 0 : 300);
 
-    if (REDUCED) { showAll(); return; }
+    if (!typeIt) { showAll(); handingOver = false; return; }
 
     article.classList.add('develop');
     step(1);
     await sleep(600);
     for (let i = 0; i < LEDE.length; i++) await retype(LEDE[i], stashed[i], LEDE_SPEED[i]);
     LEDE.forEach(el => { el.style.minHeight = ''; });
+    ledeTyped = true;
     step(2); await sleep(180);
     step(3); await sleep(140);
     step(4); await sleep(140);
     step(5);
+    handingOver = false;
   }
 
   $('#term-bail').addEventListener('click', handOver);
