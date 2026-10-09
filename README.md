@@ -4,7 +4,8 @@
 
 Most of it happens after the day job under the [**OpenAfterHours**](https://github.com/OpenAfterHours) banner, alongside a swarm of [Claude Code](https://www.anthropic.com/claude-code) agents — under one rule: the model may interpret, organise and suggest, but it may not assert a number.
 
-💻 **[openafterhours.club →](https://shipsafterhours.github.io/ShipsAfterHours/)** — the landing page is a working shell. Type `learn`, `ai` or `projects`, or skip it and read the page.
+💻 **[ShipsAfterHours →](https://shipsafterhours.github.io/ShipsAfterHours/)** — the landing page is a working shell. Type `learn`, `ai` or `projects`, or skip it and read the page.
+🏊‍♂️ **[TrainingDen →](https://trainingden.app/)** - check out my coaching app too see a productionised app i created and have real users!
 
 ## Projects
 
