@@ -10,7 +10,7 @@ Most of it happens after the day job under the [**OpenAfterHours**](https://gith
 
 ## Projects
 
-All under the [OpenAfterHours](https://github.com/OpenAfterHours) org, with docs at [openafterhours.club](https://openafterhours.club/).
+All under the [OpenAfterHours](https://github.com/OpenAfterHours) org, with docs at [openafterhours.club](https://openafterhours.github.io/).
 
 *These projects are work in progress*
 
